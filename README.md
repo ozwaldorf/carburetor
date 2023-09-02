@@ -9,7 +9,7 @@ An IBM Carbon inspired colorscheme.
 The current form of this scheme is as a direct patch for [catppuccin](https://github.com/catppuccin/catppuccin) ports.
 
 ```lua
--- Carburetor Cool
+-- Carburetor
 mocha = {
   rosewater = "#ffd7d9",
   flamingo = "#ffb3b8",
@@ -26,19 +26,19 @@ mocha = {
   blue = "#4589ff",
   lavender = "#be95ff",
   text = "#ffffff",
-  subtext1 = "#f2f4f8",
-  subtext0 = "#dde1E6",
-  overlay2 = "#c1c7cd",
-  overlay1 = "#a2a9b0",
-  overlay0 = "#878d96",
-  surface2 = "#697077",
-  surface1 = "#4d5358",
-  surface0 = "#343a3f",
-  base = "#21272a",
-  mantle = "#121619",
+  subtext1 = "#f4f4f4",
+  subtext0 = "#e0e0e0",
+  overlay2 = "#c6c6c6",
+  overlay1 = "#a8a8a8",
+  overlay0 = "#8d8d8d",
+  surface2 = "#6f6f6f",
+  surface1 = "#525252",
+  surface0 = "#393939",
+  base = "#262626",
+  mantle = "#161616",
   crust = "#000000"
 },
--- Carburetor Medium
+-- Carburetor Cool
 macchiato = {
   rosewater = "#ffd7d9",
   flamingo = "#ffb3b8",
@@ -55,16 +55,16 @@ macchiato = {
   lavender = "#be95ff",
   mauve = "#d4bbff",
   text = "#ffffff",
-  subtext1 = "#f4f4f4",
-  subtext0 = "#e0e0e0",
-  overlay2 = "#c6c6c6",
-  overlay1 = "#a8a8a8",
-  overlay0 = "#8d8d8d",
-  surface2 = "#6f6f6f",
-  surface1 = "#525252",
-  surface0 = "#393939",
-  base = "#262626",
-  mantle = "#161616",
+  subtext1 = "#f2f4f8",
+  subtext0 = "#dde1E6",
+  overlay2 = "#c1c7cd",
+  overlay1 = "#a2a9b0",
+  overlay0 = "#878d96",
+  surface2 = "#697077",
+  surface1 = "#4d5358",
+  surface0 = "#343a3f",
+  base = "#21272a",
+  mantle = "#121619",
   crust = "#000000"
 },
 -- Carburetor Warm
