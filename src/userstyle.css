@@ -1,5 +1,6 @@
 /* Replace the color definition in any catppuccin userstyle port */
 
+/* Carburetor Warm */
 @frappe: {
     @rosewater: #ffd7d9;
     @flamingo: #ffb3b8;
@@ -28,6 +29,8 @@
     @mantle: #171414;
     @crust: #000000;
 }
+
+/* Carburetor Cool */
 @macchiato: {
     @rosewater: #ffd7d9;
     @flamingo: #ffb3b8;
@@ -56,6 +59,8 @@
     @mantle: #121619;
     @crust: #000000;
 }
+
+/* Carburetor */
 @mocha: {
     @rosewater: #ffd7d9;
     @flamingo: #ffb3b8;
