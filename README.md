@@ -4,7 +4,7 @@ An IBM Carbon inspired colorscheme.
 
 ![image](https://github.com/ozwaldorf/carburetor/assets/8976745/b37d7956-8230-4bed-ae56-4bcc56813ed3)
 
-## Colors
+## Usage
 
 The current form of this scheme is as a direct patch for [catppuccin](https://github.com/catppuccin/catppuccin) ports.
 
@@ -39,6 +39,8 @@ mocha = {
   crust = "#000000",
 }
 ```
+
+The [samples](samples) directory contains copy and pasteable patches for different languages. For example, most catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact [css](samples/css.txt) color definition, and are easily modified.
 
 ## Honorable Mentions
 
