@@ -1,36 +1,36 @@
 [colors]
-background = '#262626'
+background = '#21272a'
 foreground = '#ffffff'
 cursor_bg = '#ffffff'
 cursor_border = '#ffffff'
-cursor_fg = '#262626'
+cursor_fg = '#21272a'
 
 ansi = [
-    '#393939',
+    '#343a3f',
     '#fa4d56',
     '#42be65',
     '#ff832b',
     '#4589ff',
     '#ff7eb6',
     '#3ddbd9',
-    '#c6c6c6',
+    '#c1c7cd',
 ]
 brights = [
-    '#525252',
+    '#4d5358',
     '#ff8389',
     '#42be65',
     '#fddc69',
     '#78a9ff',
     '#ffb3b8',
     '#82cfff',
-    '#e0e0e0',
+    '#dde1E6',
 ]
 
 [colors.tab_bar]
-background = "rgb(22,22,22,0.8)"
+background = "#000000"
 
 [colors.tab_bar.active_tab]
-bg_color = '#262626'
+bg_color = '#121619'
 fg_color = '#ffffff'
 intensity = 'Normal'
 italic = false
@@ -38,7 +38,7 @@ strikethrough = false
 underline = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color = "rgb(22,22,22,0.8)"
+bg_color = "#21272a"
 fg_color = '#ffffff'
 intensity = 'Normal'
 italic = false
@@ -46,7 +46,7 @@ strikethrough = false
 underline = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color = '#262626'
+bg_color = '#21272a'
 fg_color = '#ffffff'
 intensity = 'Normal'
 italic = false
@@ -54,4 +54,4 @@ strikethrough = false
 underline = 'None'
 
 [metadata]
-name = 'Carburator Medium'
+name = 'Carburator Cool'
