@@ -104,15 +104,13 @@ frappe = {
 
 ### Generic Patch Tool
 
-There is a simple bash script for patching an existing catppuccin port's hex colors to carburetor.
+There is a simple bash script for patching any existing catppuccin port's hex colors to carburetor. Note that some ports use a css pre-processor to create variations of colors, so they will need to be patched beforehand and then compiled, like [discord](#discord).
 
 ```bash
 ./patch.sh <all|mocha|macchiato|frappe> <directory path>
 ```
 
 ### Example Configs
-
-The [src](src) directory contains copy and paste-able configs for different things. 
 
 #### Nvim
 
