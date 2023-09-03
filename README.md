@@ -130,7 +130,26 @@ You will then have the set of colorschemes available:
 
 #### Discord
 
-See [discord.md](src/discord.md) for detailed patch instructions.
+To patch the [discord](https://github.com/catppuccin/discord) catppuccin port, run the following:
+
+```bash
+# Clone the port
+git clone https://github.com/catppuccin/discord && cd discord
+
+# Install dependencies
+yarn install
+
+# Patch each flavor
+../patch.sh all node_modules/@catppuccin/palette
+
+# Build the port
+yarn build 
+
+# Install a theme (webcord specific, for other projects check their docs)
+# cp dist/dist/catppuccin-mocha.theme.css ~/.config/WebCord/Themes/carburator
+# cp dist/dist/catppuccin-macchiato.theme.css ~/.config/WebCord/Themes/carburator-cool
+# cp dist/dist/catppuccin-frappe.theme.css ~/.config/WebCord/Themes/carburator-warm
+```
 
 #### Userstyles
 
