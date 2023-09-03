@@ -1,10 +1,18 @@
 #!/bin/bash
 flavor=$1
 path=$2
-
-if [[ "$flavor" -ne "" && "$path" -ne "" ]]; then 
+if [[ -z "$flavor" || -z "$path" ]]; then 
+  echo "Usage: $0 <mocha|macchiato|frappe> <source dir>"
   exit 1
 fi
+
+patch () {
+  echo "patching $flavor colors"
+  for index in ${!OLD[*]}; do
+    regex="s/${OLD[$index]}/${NEW[$index]}/g"
+    echo "$regex" && find "$path" -type f -exec sed -i "$regex" {} +
+  done
+}
 
 case "$flavor" in
   "mocha")
@@ -64,7 +72,6 @@ case "$flavor" in
 "#161616"
 "#000000"
     )
-    echo "${NEW[0]}"
     ;;
 
   macchiato)
@@ -190,9 +197,4 @@ case "$flavor" in
     ;;
 esac
 
-echo "patching $flavor colors"
-
-for index in ${!OLD[*]}; do
-  echo "replacing ${OLD[$index]} with ${NEW[$index]}"
-  find "$path" -type f -exec sed -i "s/${OLD[$index]}/${NEW[$index]}/g" {} +
-done
+patch
