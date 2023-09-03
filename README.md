@@ -100,17 +100,41 @@ frappe = {
 }
 ```
 
-## Samples and configs
+## Usage 
 
-The [src](src) directory contains copy and pasteable patches and usable configs for different things. For example, most catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact [css](src/userstyle.css) color definition, and are easily modified.
-
-## Patch tool
+### Generic Patch Tool
 
 There is a simple bash script for patching an existing catppuccin port's hex colors to carburetor.
 
 ```bash
-./patch.sh <mocha|macchiato|frappe> <directory path>
+./patch.sh <all|mocha|macchiato|frappe> <directory path>
 ```
+
+### Example Configs
+
+The [src](src) directory contains copy and paste-able configs for different things. 
+
+#### Nvim
+
+[catppuccin.nvim](https://github.com/catppuccin/nvim) can be easily configured to use carburetor colors, shown [here](src/nvim.lua).
+
+#### Wezterm
+
+The wezterm color configs can be found [here](src/wezterm) can be copied into `~/.config/wezterm/colors/`.
+
+You will then have the set of colorschemes available:
+
+- `Carburetor`
+- `Carburetor Cool`
+- `Carburetor Warm`
+
+#### Discord
+
+See [discord.md](src/discord.md) for detailed patch instructions.
+
+#### Userstyles
+
+Most catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact color definition, and are easily modified using the [userstyle example](src/userstyle.css).
 
 ## Honorable Mentions
 
