@@ -2,7 +2,7 @@
 flavor=$1
 path=$2
 if [[ -z "$flavor" || -z "$path" ]]; then 
-  echo "Usage: $0 <mocha|macchiato|frappe> <source dir>"
+  echo "Usage: $0 <all|mocha|macchiato|frappe> <source dir>"
   exit 1
 fi
 
@@ -19,6 +19,12 @@ patch () {
 }
 
 case "$flavor" in
+  all)
+    $0 mocha "$2"
+    $0 macchiato "$2"
+    $0 frappe "$2"
+    ;;
+
   mocha)
     # Carburetor
     export COLORS=( 
