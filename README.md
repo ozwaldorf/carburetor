@@ -16,7 +16,7 @@ An IBM Carbon inspired colorscheme.
 
 ## Previews
 
-![image](https://github.com/ozwaldorf/carburetor/assets/8976745/fa15c369-5f7b-4196-b863-496583beac96)
+![image](https://github.com/ozwaldorf/carburetor/assets/8976745/485c15d7-bf52-4558-ba72-72bde8ce9a96)
 
 ![image](https://github.com/ozwaldorf/carburetor/assets/8976745/c58ed141-858a-4422-aea4-24ce89625fd1)
 
