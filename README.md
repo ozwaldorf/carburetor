@@ -6,7 +6,7 @@ An IBM Carbon inspired colorscheme.
 
 1. [Previews](#previews)
 2. [Usage](#usage)
-    1. [Patch Tool](#generic-patch-tool)
+    1. [Patch Tool](#patch-tool)
     2. [Examples](#examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
