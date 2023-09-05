@@ -6,8 +6,8 @@ An IBM Carbon inspired colorscheme.
 
 1. [Previews](#previews)
 2. [Usage](#usage)
-    1. [Generic Patch Tool](#generic-patch-tool)
-    2. [Example Configs](#example-configs)
+    1. [Patch Tool](#generic-patch-tool)
+    2. [Examples](#examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
         3. [Discord](#discord)
@@ -16,15 +16,13 @@ An IBM Carbon inspired colorscheme.
 
 ## Previews
 
-![image](https://github.com/ozwaldorf/carburetor/assets/8976745/485c15d7-bf52-4558-ba72-72bde8ce9a96)
-
-![image](https://github.com/ozwaldorf/carburetor/assets/8976745/c58ed141-858a-4422-aea4-24ce89625fd1)
+TODO
 
 ## Usage 
 
 The current form of this scheme is as a direct patch for [catppuccin](https://github.com/catppuccin/catppuccin) ports.
 
-### Generic Patch Tool
+### Patch Tool
 
 There is a simple bash script for patching any existing catppuccin port's hex colors to carburetor. Note that some ports use a css pre-processor to create variations of colors, so they will need to be patched beforehand and then compiled, like [discord](#discord).
 
@@ -32,7 +30,7 @@ There is a simple bash script for patching any existing catppuccin port's hex co
 ./patch.sh <all|mocha|macchiato|frappe> <directory path>
 ```
 
-### Example Configs
+### Examples
 
 #### Nvim
 

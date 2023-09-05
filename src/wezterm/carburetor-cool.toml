@@ -1,12 +1,12 @@
 [colors]
-background = '#21272a'
-foreground = '#ffffff'
-cursor_bg = '#ffffff'
-cursor_border = '#ffffff'
-cursor_fg = '#21272a'
+background = '#121619'
+foreground = '#f2f4f8'
+cursor_bg = '#f2f4f8'
+cursor_border = '#f2f4f8'
+cursor_fg = '#121619'
 
 ansi = [
-    '#343a3f',
+    '#21272a',
     '#fa4d56',
     '#42be65',
     '#ff832b',
@@ -16,7 +16,7 @@ ansi = [
     '#c1c7cd',
 ]
 brights = [
-    '#4d5358',
+    '#343a3f',
     '#ff8389',
     '#42be65',
     '#fddc69',
@@ -27,27 +27,27 @@ brights = [
 ]
 
 [colors.tab_bar]
-background = "#000000"
+background = "#090b0c"
 
 [colors.tab_bar.active_tab]
-bg_color = '#121619'
-fg_color = '#ffffff'
+bg_color = '#4589ff'
+fg_color = '#f2f4f8'
 intensity = 'Normal'
 italic = false
 strikethrough = false
 underline = 'None'
 
 [colors.tab_bar.inactive_tab]
-bg_color = "#21272a"
-fg_color = '#ffffff'
+bg_color = "#090b0c"
+fg_color = '#f2f4f8'
 intensity = 'Normal'
 italic = false
 strikethrough = false
 underline = 'None'
 
 [colors.tab_bar.new_tab]
-bg_color = '#21272a'
-fg_color = '#ffffff'
+bg_color = '#090b0c'
+fg_color = '#f2f4f8'
 intensity = 'Normal'
 italic = false
 strikethrough = false
