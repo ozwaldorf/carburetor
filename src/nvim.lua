@@ -61,7 +61,7 @@ use({
           surface1 = "#343a3f",
           surface0 = "#21272a",
           base = "#121619",
-          mantle = "##090b0c",
+          mantle = "#090b0c",
           crust = "#000000"
         },
         -- Carburetor Warm
