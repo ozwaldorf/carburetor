@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 flavor=$1
-path=$2
-if [[ -z "$flavor" || -z "$path" ]]; then 
-  echo "Usage: $0 <all|mocha|macchiato|frappe> <source dir>"
+transparent=$2
+path=$3
+if [[ -z "$flavor" || -z "$transparent" || -z "$path" ]]; then
+  echo "Usage: $0 <all|mocha|macchiato|frappe> <true|false> <source dir>"
   exit 1
 fi
 
@@ -20,14 +21,14 @@ patch () {
 
 case "$flavor" in
   all)
-    $0 mocha "$2"
-    $0 macchiato "$2"
-    $0 frappe "$2"
+    $0 mocha "$2" "$3"
+    $0 macchiato "$2" "$3"
+    $0 frappe "$2" "$3"
     ;;
 
   mocha)
     # Carburetor
-    export COLORS=( 
+    export COLORS=(
       "#f5e0dc/#ffd7d9"
       "#f2cdcd/#ffb3b8"
       "#f5c2e7/#ff7eb6"
