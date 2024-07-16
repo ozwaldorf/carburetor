@@ -6,19 +6,27 @@
   outputs =
     { self, nixpkgs }:
     let
+      inherit (nixpkgs) lib;
       forAllSystems =
-        function:
-        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
-          system: function nixpkgs.legacyPackages.${system}
+        fun:
+        lib.genAttrs lib.systems.flakeExposed (
+          system:
+          fun (
+            import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+            }
+          )
         );
     in
     {
       overlays.default = final: prev: {
-        carburetor-gtk = import ./nix/carburetor-gtk.nix { pkgs = prev; };
+        carburetor-gtk = prev.callPackage ./nix/carburetor-gtk.nix { };
+        carburetor-papirus-folders = prev.callPackage ./nix/carburetor-papirus-folders.nix { };
       };
 
       packages = forAllSystems (pkgs: {
-        inherit (pkgs) carburetor-gtk;
+        inherit (pkgs) carburetor-gtk carburetor-papirus-folders;
       });
     };
 }
