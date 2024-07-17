@@ -1,6 +1,6 @@
 # Carburetor
 
-An IBM Carbon inspired colorscheme.
+A functional and high contrast colorscheme inspired by IBM Carbon.
 
 ## Table of Contents
 
