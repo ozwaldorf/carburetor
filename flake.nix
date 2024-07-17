@@ -29,6 +29,7 @@
       });
       homeManagerModules = {
         webcord = import ./nix/home/webcord.nix self;
+        wezterm = import ./nix/home/wezterm.nix self;
         default = import ./nix/home self;
       };
     };

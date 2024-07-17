@@ -50,16 +50,25 @@ Raw discord css themes
 
 ### Home Manager
 
-Several themes can be setup through home manager.
+Several themes can be setup through home manager. Overlay is required in the pkgs given to home manager.
 
 #### `homeManagerModules.webcord`
 
-> Note: Requires overlay to be used
+Enable webcord theme
 
 Options:
 
 - `programs.webcord.carburetor.enable`: `bool`
 - `programs.webcord.carburetor.variant`: `regular`|`warm`|`cool`
+
+#### `homeManagerModules.webcord`
+
+Install wezterm color themes (allowing wezterm to be configured to `Carburetor`, `Carburetor Warm`, and `Carburetor Cool`)
+
+Options:
+
+- `programs.wezterm.carburetor.enable`: `bool`
+- `programs.wezterm.carburetor.colorsDir`: `str` - Directory to install color files into (default: "wezterm/colors")
 
 ---
 
