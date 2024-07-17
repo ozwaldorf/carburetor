@@ -17,7 +17,7 @@ let
 in
 pkgs.stdenvNoCC.mkDerivation {
   inherit src;
-  name = "carburetor-webcord";
+  name = "carburetor-discord";
   nativeBuildInputs = [ pkgs.yarn ];
   buildPhase = ''
     mkdir node_modules
@@ -26,8 +26,8 @@ pkgs.stdenvNoCC.mkDerivation {
   '';
   installPhase = ''
     mkdir $out
-    cp dist/dist/catppuccin-mocha.theme.css $out/carburetor
-    cp dist/dist/catppuccin-macchiato.theme.css $out/carburetor-warm
-    cp dist/dist/catppuccin-frappe.theme.css $out/carburetor-cool
+    cp dist/dist/catppuccin-mocha.theme.css $out/carburetor.css
+    cp dist/dist/catppuccin-macchiato.theme.css $out/carburetor-warm.css
+    cp dist/dist/catppuccin-frappe.theme.css $out/carburetor-cool.css
   '';
 }

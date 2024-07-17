@@ -8,7 +8,7 @@ An IBM Carbon inspired colorscheme.
 2. [Usage](#usage)
     1. [Nix](#nix)
     2. [Patch Tool](#patch-tool)
-    3. [Examples](#examples)
+    3. [Config Examples](#config-examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
         3. [Discord](#discord)
@@ -26,8 +26,6 @@ The current form of this scheme is as a direct patch for [catppuccin](https://gi
 ### Nix
 
 Output packages are available through `carburetor.packages.${system}.*`, or as an overlay through `carburetor.overlays.default`.
-
---
 
 #### `packages.*.carburetor-gtk`
 
@@ -50,7 +48,9 @@ Inputs:
 
 Raw discord css themes
 
----
+### Home Manager
+
+Several themes can be setup through home manager.
 
 #### `homeManagerModules.webcord`
 
@@ -60,6 +60,8 @@ Options:
 
 - `programs.webcord.carburetor.enable`: `bool`
 - `programs.webcord.carburetor.variant`: `regular`|`warm`|`cool`
+
+---
 
 ### Patch Tool
 
@@ -73,7 +75,9 @@ Options:
   TRANSPARENCY: true | false
 ```
 
-### Examples
+---
+
+### Config Examples
 
 #### Nvim
 

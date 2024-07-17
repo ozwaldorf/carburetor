@@ -24,11 +24,14 @@ in
     xdg.configFile."WebCord/Themes/carburetor".source =
       pkgs.carburetor-webcord
       + "/carburetor"
-      + {
-        regular = "";
-        warm = "-warm";
-        cool = "-cool";
-      }
-      ."${cfg.carburetor.variant}";
+      + (
+        {
+          regular = "";
+          warm = "-warm";
+          cool = "-cool";
+        }
+        ."${cfg.carburetor.variant}"
+      )
+      + ".css";
   };
 }

@@ -1,8 +1,6 @@
 {
-  description = "Overlay for carburetor patched catppuccin packages";
-
+  description = "Overlay and modules for carburetor themes";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
   outputs =
     { self, nixpkgs }:
     let
@@ -20,32 +18,18 @@
         );
     in
     {
-      overlays.default = _: prev: {
-        carburetor-patch = prev.stdenv.mkDerivation {
-          name = "carburetor-patch";
-          src = ./.;
-          installPhase = ''
-            mkdir -p $out/bin
-            cp ./patch.sh $out/bin/carburetor-patch
-            chmod +x $out/bin/carburetor-patch
-          '';
-        };
-        carburetor-gtk = prev.callPackage ./nix/pkgs/gtk.nix { };
-        carburetor-papirus-folders = prev.callPackage ./nix/pkgs/papirus-folders.nix { };
-        carburetor-webcord = prev.callPackage ./nix/pkgs/webcord.nix { };
-      };
-
+      overlays.default = import ./nix/pkgs;
       packages = forAllSystems (pkgs: {
         inherit (pkgs)
           carburetor-patch
           carburetor-gtk
           carburetor-papirus-folders
-          carburetor-webcord
+          carburetor-discord
           ;
       });
-
       homeManagerModules = {
-        webcord = import ./nix/modules/webcord.nix self;
+        webcord = import ./nix/home/webcord.nix self;
+        default = import ./nix/home self;
       };
     };
 }
