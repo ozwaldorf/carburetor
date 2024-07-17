@@ -25,7 +25,7 @@ pkgs.stdenv.mkDerivation {
           variant = flavor;
         }).out;
     })
-    ../patch.sh
+    ../../patch.sh
   ];
   unpackPhase = ''
     for srcFile in $src; do

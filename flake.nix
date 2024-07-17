@@ -20,13 +20,32 @@
         );
     in
     {
-      overlays.default = final: prev: {
-        carburetor-gtk = prev.callPackage ./nix/carburetor-gtk.nix { };
-        carburetor-papirus-folders = prev.callPackage ./nix/carburetor-papirus-folders.nix { };
+      overlays.default = _: prev: {
+        carburetor-patch = prev.stdenv.mkDerivation {
+          name = "carburetor-patch";
+          src = ./.;
+          installPhase = ''
+            mkdir -p $out/bin
+            cp ./patch.sh $out/bin/carburetor-patch
+            chmod +x $out/bin/carburetor-patch
+          '';
+        };
+        carburetor-gtk = prev.callPackage ./nix/pkgs/gtk.nix { };
+        carburetor-papirus-folders = prev.callPackage ./nix/pkgs/papirus-folders.nix { };
+        carburetor-webcord = prev.callPackage ./nix/pkgs/webcord.nix { };
       };
 
       packages = forAllSystems (pkgs: {
-        inherit (pkgs) carburetor-gtk carburetor-papirus-folders;
+        inherit (pkgs)
+          carburetor-patch
+          carburetor-gtk
+          carburetor-papirus-folders
+          carburetor-webcord
+          ;
       });
+
+      homeManagerModules = {
+        webcord = import ./nix/modules/webcord.nix self;
+      };
     };
 }
