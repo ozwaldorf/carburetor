@@ -41,21 +41,24 @@ Output packages are available through `carburetor.packages.${system}.*`, or as a
 
 > Note: nixpkgs overlay *MUST* be used for the home manager modules to work.
 
-Several themes can be automatically installed and/or configured via home manager.
+Example:
 
-Simply import the default module to make all options available, or import individual modules for only their specific options:
+```nix
+# import the carburetor module
+imports = [ inputs.carburetor.homeManagerModules.default ];
 
-```
-imports [ inputs.carburetor.homeManagerModules.default ];
+# configure carburetor theme installation
+carburetor = {
+    variant = "regular";
+    accent = "blue";
+
+    webcord.enable = true; # install and configure theme
+    wezterm.enable = true; # installs all theme files, needs to be configured seperately
+    zed.enable = true; # installs all theme files, needs to be configured seperately
+}
 ```
 
 Detailed documentation on options are available at [docs/home.md](./docs/home.md).
-
-Home modules are provided for:
-
-- `webcord` - installs and enables theme
-- `wezterm` - installs theme files, but needs to be configured separately
-- `zed` - installs theme files, but needs to be configured separately
 
 ### Patch Tool
 
