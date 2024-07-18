@@ -10,10 +10,11 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
     2. [Patch Tool](#patch-tool)
         1. [Discord](#discord)
     3. [Catppuccin Whiskers](#catppuccin-whiskers)
+        1. [Zed](#zed)
     4. [Config Examples](#config-examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
-        4. [Userstyles](#userstyles)
+        3. [Userstyles](#userstyles)
 3. [Honorable Mentions](#honorable-mentions)
 
 ## Previews
@@ -49,6 +50,11 @@ imports [ inputs.carburetor.homeManagerModules.default ];
 
 Detailed documentation on options are available at [docs/home.md](./docs/home.md).
 
+Home modules are provided for:
+
+- `webcord` - installs and enables theme
+- `wezterm` - installs theme files to home, but needs to be configured separately
+
 ### Patch Tool
 
 There is a simple bash script for patching any existing catppuccin port's hex colors to carburetor. Note that some ports use a css pre-processor to create variations of colors, so they will need to be patched beforehand and then compiled, like [discord](#discord).
@@ -60,43 +66,6 @@ Options:
   FLAVOR: all | mocha | macchiato | frappe
   TRANSPARENCY: true | false
 ```
-
-### Catppuccin `whiskers`
-
- Catppuccin has a tool called [whiskers](https://github.com/catppuccin/whiskers) which is used to create color schemes from template files. The [`whiskers.json`](examples/whiskers.json) file can be used to generate a Carburetor color scheme for any template file that works with `whiskers`.
-
-A list of available catppuccin ports can be found at [arewewhiskersyet.com](https://arewewhiskersyet.com/).
-
-#### Example: Zed
-The same process should apply for whichever program you would like to create a Carburetor color scheme for.
-
-1. [Install whiskers](https://github.com/catppuccin/whiskers?tab=readme-ov-file#installation)
-2. Download the [template file for Zed](https://github.com/catppuccin/zed/blob/main/zed.tera)
-3. (Optional) customize the template file as you like (e.g. changing the names of color schemes, etc.). Documentation for the template syntax `whiskers` uses is available [here](https://github.com/catppuccin/whiskers?tab=readme-ov-file#template).
-4. Run (customizing the input filename and output format for your template):
-```
-whiskers zed.tera -o json --color-overrides whiskers.json
-```
-5. `whiskers` should generate one or more color scheme files, dependent on the template. For Zed, it generates a `themes` directory with color scheme files for each accent color.
-6. Install your color scheme!
-
----
-
-### Config Examples
-
-#### Nvim
-
-[catppuccin.nvim](https://github.com/catppuccin/nvim) can be easily configured to use carburetor colors, shown [here](src/nvim.lua).
-
-#### Wezterm
-
-The wezterm color configs can be found [here](src/wezterm) can be copied into `~/.config/wezterm/colors/`.
-
-You will then have the set of colorschemes available:
-
-- `Carburetor`
-- `Carburetor Cool`
-- `Carburetor Warm`
 
 #### Discord
 
@@ -121,10 +90,59 @@ yarn build
 # cp dist/dist/catppuccin-frappe.theme.css ~/.config/WebCord/Themes/carburator-warm
 ```
 
+### Catppuccin `whiskers`
+
+ Catppuccin has a tool called [whiskers](https://github.com/catppuccin/whiskers) which is used to create color schemes from template files. The [`whiskers.json`](examples/whiskers.json) file can be used to generate a Carburetor color scheme for any template file that works with `whiskers`.
+
+A list of available catppuccin ports can be found at [arewewhiskersyet.com](https://arewewhiskersyet.com/).
+
+#### Zed
+
+The same process should apply for whichever program you would like to create a Carburetor color scheme for.
+
+1. [Install whiskers](https://github.com/catppuccin/whiskers?tab=readme-ov-file#installation)
+2. Download the [template file for Zed](https://github.com/catppuccin/zed/blob/main/zed.tera)
+3. (Optional) customize the template file as you like (e.g. changing the names of color schemes, etc.). Documentation for the template syntax `whiskers` uses is available [here](https://github.com/catppuccin/whiskers?tab=readme-ov-file#template).
+4. Run (customizing the input filename and output format for your template):
+  ```
+  whiskers zed.tera -o json --color-overrides whiskers.json
+  ```
+5. `whiskers` should generate one or more color scheme files, dependent on the template. For Zed, it generates a `themes` directory with color scheme files for each accent color.
+6. Install your color scheme!
+
+---
+
+### Config Examples
+
+#### Nvim
+
+[catppuccin.nvim](https://github.com/catppuccin/nvim) can be easily configured to use carburetor colors, shown [here](src/nvim.lua).
+
 #### Userstyles
 
-Most catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact color definition, and are easily modified using the [userstyle example](src/userstyle.css).
+Catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact color definitions, and can be easily patched by replacing them with the [userstyle colors](src/userstyle.css).
+
+#### Wezterm
+
+The wezterm color configs can be found [here](src/wezterm) and can be copied into `~/.config/wezterm/colors/`.
+
+You will then have the set of colorschemes available:
+
+- `Carburetor`
+- `Carburetor Cool`
+- `Carburetor Warm`
 
 ## Honorable Mentions
 
 Heavily inspired from [oxocarbon](https://github.com/nyoom-engineering/oxocarbon/).
+
+## Development
+
+### Docs
+
+Nix docs can be generated and copied to the repo via:
+
+```bash
+nix build .\#docs && cp -L result/* docs
+```
+

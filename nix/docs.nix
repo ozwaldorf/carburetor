@@ -33,4 +33,7 @@ let
     options = builtins.removeAttrs eval.options [ "_module" ];
   };
 in
-optionsDoc.optionsCommonMark
+pkgs.runCommand "docs" { } ''
+  mkdir $out
+  ln -s ${optionsDoc.optionsCommonMark} $out/home.md
+''
