@@ -3,6 +3,7 @@
   imports = [
     ./webcord.nix
     ./wezterm.nix
+    ./zed.nix
   ];
 
   options = {

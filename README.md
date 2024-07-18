@@ -35,6 +35,7 @@ Output packages are available through `carburetor.packages.${system}.*`, or as a
 - `carburetor-discord` - patched discord css
 - `carburetor-papirus-folders` - patched papirus folders
 - `carburetor-patch` - [src/patch.sh](./src/patch.sh)
+- `carburetor-zed` - whiskers zed theme
 
 #### Home Manager
 
@@ -53,7 +54,8 @@ Detailed documentation on options are available at [docs/home.md](./docs/home.md
 Home modules are provided for:
 
 - `webcord` - installs and enables theme
-- `wezterm` - installs theme files to home, but needs to be configured separately
+- `wezterm` - installs theme files, but needs to be configured separately
+- `zed` - installs theme files, but needs to be configured separately
 
 ### Patch Tool
 
