@@ -1,16 +1,7 @@
 { config, lib, ... }:
-let
-  cfg = config.carburetor.wezterm;
-in
 {
-  options.carburetor.wezterm = {
-    enable = lib.mkEnableOption "installing carburetor themes to wezterm";
-    colorsDir = lib.mkOption {
-      type = with lib.types; uniq str;
-      default = "wezterm/colors";
-      description = "Directory to install color theme files to";
-    };
+  options.carburetor.wezterm.enable = lib.mkEnableOption "installing carburetor themes to wezterm";
+  config = lib.mkIf config.carburetor.wezterm.enable {
+    xdg.configFile."wezterm/colors".source = ../../src/wezterm;
   };
-
-  config = lib.mkIf cfg.enable { xdg.configFile."${cfg.colorsDir}".source = ../../src/wezterm; };
 }

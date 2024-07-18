@@ -90,27 +90,6 @@ boolean
 
 
 
-## carburetor\.webcord\.variant
-
-
-
-Variant to install\. Options: “regular”, “warm”, or “cool”
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-` "regular" `
-
-*Declared by:*
- - [\<carburetor/nix/home/webcord\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/webcord.nix)
-
-
-
 ## carburetor\.wezterm\.enable
 
 
@@ -137,23 +116,28 @@ boolean
 
 
 
-## carburetor\.wezterm\.colorsDir
+## carburetor\.zed\.enable
 
 
 
-Directory to install color theme files to
+Whether to enable installing carburetor themes to zed\.
 
 
 
 *Type:*
-string
+boolean
 
 
 
 *Default:*
-` "wezterm/colors" `
+` false `
+
+
+
+*Example:*
+` true `
 
 *Declared by:*
- - [\<carburetor/nix/home/wezterm\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/wezterm.nix)
+ - [\<carburetor/nix/home/zed\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/zed.nix)
 
 

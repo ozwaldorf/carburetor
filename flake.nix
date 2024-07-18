@@ -27,10 +27,11 @@
       packages = forAllSystems (
         pkgs:
         let
-          overlayPackages = lib.removeAttrs (builtins.attrNames (self.overlays.default null null)) [ "lib" ];
+          # re-export all packages created in the overlay
+          overlayList = builtins.attrNames (self.overlays.default null null);
+          overlayPkgs = lib.removeAttrs (lib.attrsets.getAttrs overlayList pkgs) [ "lib" ];
         in
-        # re-export all packages created in the overlay
-        lib.attrsets.getAttrs overlayPackages pkgs // { docs = import ./nix/docs.nix pkgs; }
+        overlayPkgs // { docs = import ./nix/docs.nix pkgs; }
       );
 
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
