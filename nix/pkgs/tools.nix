@@ -27,6 +27,10 @@ pkgs: {
           whiskersOverrides ? "{}",
           # Color overrides file to pass
           whiskersColorOverrides ? ../../src/whiskers.json,
+          # Rename files to theme name
+          renameFiles ? true,
+          # Rename text inside files to theme name
+          renameText ? true,
 
           # Inner mkDerivation function to use
           mkDerivation ? pkgs.stdenvNoCC.mkDerivation,
@@ -37,7 +41,10 @@ pkgs: {
         mkDerivation (
           {
             name = theme + "-" + pname;
-            nativeBuildInputs = nativeBuildInputs ++ [ pkgs.catppuccin-whiskers ];
+            nativeBuildInputs = nativeBuildInputs ++ [
+              pkgs.tree
+              pkgs.catppuccin-whiskers
+            ];
             buildPhase = ''
               runHook preBuild
 
@@ -53,6 +60,13 @@ pkgs: {
                 $CMD --dry-run | awk -F 'into ' '{print $2}'
               ))
 
+              # Replace variant texts
+              find . -type f -exec sed -i \
+                -e 's/mocha/regular/I' \
+                -e 's/macchiato/warm/I' \
+                -e 's/frapp[eé]/cool/I' \
+                {} \;
+
               runHook postBuild
             '';
             # Installation phase. By default; will iterate over `$files` whiskers output
@@ -64,7 +78,14 @@ pkgs: {
               for output in "''${files[@]}"; do
                 echo "Copying and renaming $output"
                 cp -r --parents $output $out
-                mv $out/$output $out/''${output/catppuccin/${theme}}
+
+                RENAME=''${output/catppuccin/${theme}}
+                RENAME=''${RENAME/mocha/regular}
+                RENAME=''${RENAME/macchiato/warm}
+                RENAME=''${RENAME/frappe/cool}
+                if [ "$output" != "$RENAME" ]; then
+                  mv $out/$output $out/$RENAME
+                fi
               done
 
               runHook postInstall
