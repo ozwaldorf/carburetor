@@ -13,7 +13,7 @@ let
     }
     ."${variant}";
 in
-pkgs.stdenv.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   name = "carburetor-papirus-folders";
   src = (pkgs.catppuccin-papirus-folders.override { inherit flavor accent; }).out;
   nativeBuildInputs = with pkgs; [ carburetor-patch ];
