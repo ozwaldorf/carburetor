@@ -1,4 +1,3 @@
-self:
 {
   pkgs,
   config,
@@ -6,21 +5,19 @@ self:
   ...
 }:
 let
-  cfg = config.programs.webcord;
+  cfg = config.carburetor.webcord;
 in
 {
-  options = {
-    programs.webcord.carburetor = {
-      enable = lib.mkEnableOption "carburetor";
-      variant = lib.mkOption {
-        type = with lib.types; uniq str;
-        default = "regular";
-        description = ''Variant to install. Options: "regular", "warm", or "cool"'';
-      };
+  options.carburetor.webcord = {
+    enable = lib.mkEnableOption "carburetor";
+    variant = lib.mkOption {
+      type = with lib.types; uniq str;
+      default = "regular";
+      description = ''Variant to install. Options: "regular", "warm", or "cool"'';
     };
   };
 
-  config = lib.mkIf cfg.carburetor.enable {
+  config = lib.mkIf cfg.enable {
     xdg.configFile."WebCord/Themes/carburetor".source =
       pkgs.carburetor-webcord
       + "/carburetor"
@@ -30,7 +27,7 @@ in
           warm = "-warm";
           cool = "-cool";
         }
-        ."${cfg.carburetor.variant}"
+        ."${cfg.variant}"
       )
       + ".css";
   };

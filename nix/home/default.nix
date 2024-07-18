@@ -1,6 +1,10 @@
-self:
 { lib, config, ... }:
 {
+  imports = [
+    ./webcord.nix
+    ./wezterm.nix
+  ];
+
   options = {
     carburetor = {
       enable = lib.mkEnableOption "all themes";
@@ -16,15 +20,12 @@ self:
       };
     };
   };
-  imports = [
-    ./webcord.nix
-    ./wezterm.nix
-  ];
+
   config = lib.mkIf config.carburetor.enable {
-    programs.webcord.carburetor = {
-      inherit (config.carburetor) accent variant;
+    carburetor.webcord = {
+      inherit (config.carburetor) variant;
       enable = true;
     };
-    programs.wezterm.carburetor.enable = true;
+    carburetor.wezterm.enable = true;
   };
 }
