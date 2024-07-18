@@ -8,11 +8,11 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
 2. [Usage](#usage)
     1. [Nix](#nix)
     2. [Patch Tool](#patch-tool)
-    3. [Catppuccin whiskers](#catppuccin-whiskers)
+        1. [Discord](#discord)
+    3. [Catppuccin Whiskers](#catppuccin-whiskers)
     4. [Config Examples](#config-examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
-        3. [Discord](#discord)
         4. [Userstyles](#userstyles)
 3. [Honorable Mentions](#honorable-mentions)
 
@@ -26,52 +26,26 @@ The current form of this scheme is as a direct patch for [catppuccin](https://gi
 
 ### Nix
 
-Output packages are available through `carburetor.packages.${system}.*`, or as an overlay through `carburetor.overlays.default`.
+#### Packages
 
-#### `packages.*.carburetor-gtk`
+Output packages are available through `carburetor.packages.${system}.*`, or as an overlay through `carburetor.overlays.default`:
 
-Patched gtk theme
+- `carburetor-gtk` - patched gtk theme
+- `carburetor-discord` - patched discord css
+- `carburetor-papirus-folders` - patched papirus folders
+- `carburetor-patch` - [patch.sh](./patch.sh)
 
-Inputs:
-- `variant`: "regular"|"cool"|"warm"
-- `accents`: any accent color
+#### Home Manager
 
+Several themes can be automatically installed and/or configured via home manager.
 
-#### `packages.*.carburetor-papirus-folders`
+Simply import the default module to make all options available, or import individual modules for only their specific options:
 
-Patched papirus folder icon theme
+```
+imports [ inputs.carburetor.homeManagerModules.default ];
+```
 
-Inputs:
-
-- `accents`: any accent color
-
-#### `packages.*.carburetor-discord`
-
-Raw discord css themes
-
-### Home Manager
-
-Several themes can be setup through home manager. Overlay is required in the pkgs given to home manager.
-
-#### `homeManagerModules.webcord`
-
-Enable webcord theme
-
-Options:
-
-- `programs.webcord.carburetor.enable`: `bool`
-- `programs.webcord.carburetor.variant`: `regular`|`warm`|`cool`
-
-#### `homeManagerModules.webcord`
-
-Install wezterm color themes (allowing wezterm to be configured to `Carburetor`, `Carburetor Warm`, and `Carburetor Cool`)
-
-Options:
-
-- `programs.wezterm.carburetor.enable`: `bool`
-- `programs.wezterm.carburetor.colorsDir`: `str` - Directory to install color files into (default: "wezterm/colors")
-
----
+Detailed documentation on options are available at [docs/home.md](./docs/home.md).
 
 ### Patch Tool
 

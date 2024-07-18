@@ -1,10 +1,5 @@
 self:
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.programs.wezterm;
 in
@@ -21,6 +16,6 @@ in
   };
 
   config = lib.mkIf cfg.carburetor.enable {
-    xdg.configFile."${cfg.carburetor.colorsDir}".source = ../../examples/wezterm;
+    xdg.configFile."${cfg.carburetor.colorsDir}".source = ../../src/wezterm;
   };
 }
