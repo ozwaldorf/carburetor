@@ -8,6 +8,7 @@ final: prev:
     carburetor-papirus-folders = prev.callPackage ./papirus-folders.nix { };
 
     ### Whiskers themes ###
+    carburetor-hyprland = prev.callPackage ./hyprland.nix { };
     carburetor-zed = prev.callPackage ./zed.nix { };
   }
 )
