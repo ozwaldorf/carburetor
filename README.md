@@ -79,7 +79,7 @@ Options:
 ### Catppuccin `whiskers`
 
 Catppuccin has a tool called [whiskers](https://github.com/catppuccin/whiskers) which is used to create color schemes from template files. The [`carburetor-whiskers.json`](carburetor-whiskers.json) file can be used to generate a Carburetor color scheme for any template file that works with `whiskers`.
-
+A list of available catppuccin ports can be found at [arewewhiskersyet.com](https://arewewhiskersyet.com/).
 #### Example: Zed
 The same process should apply for whichever program you would like to create a Carburetor color scheme for.
 
