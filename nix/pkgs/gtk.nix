@@ -16,30 +16,17 @@ let
 in
 pkgs.stdenv.mkDerivation {
   name = "carburetor-gtk";
-  src = [
-    (builtins.path {
-      name = "src";
-      path =
-        (pkgs.catppuccin-gtk.override {
-          inherit accents;
-          variant = flavor;
-        }).out;
-    })
-    ../../patch.sh
-  ];
-  unpackPhase = ''
-    for srcFile in $src; do
-      local tgt=$(echo $srcFile | cut --delimiter=- --fields=2-)
-      cp $srcFile $tgt -r
-      chmod -R ugo+rwx $tgt
-    done
-  '';
+  src =
+    (pkgs.catppuccin-gtk.override {
+      inherit accents;
+      variant = flavor;
+    }).out;
+  nativeBuildInputs = [ pkgs.carburetor-patch ];
   installPhase = ''
-    patchShebangs .
-    ./patch.sh ${flavor} ${pkgs.lib.trivial.boolToString transparent} src
+    carburetor-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} .
     mkdir -p $out/share/themes
-    cp -R src/share/themes/catppuccin-*-standard $out/share/themes/carburetor
-    cp -R src/share/themes/catppuccin-*-standard-hdpi $out/share/themes/carburetor-hdpi
-    cp -R src/share/themes/catppuccin-*-standard-xhdpi $out/share/themes/carburetor-xhdpi
+    cp -R share/themes/catppuccin-*-standard $out/share/themes/carburetor
+    cp -R share/themes/catppuccin-*-standard-hdpi $out/share/themes/carburetor-hdpi
+    cp -R share/themes/catppuccin-*-standard-xhdpi $out/share/themes/carburetor-xhdpi
   '';
 }
