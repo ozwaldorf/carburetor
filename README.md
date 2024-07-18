@@ -34,7 +34,7 @@ Output packages are available through `carburetor.packages.${system}.*`, or as a
 - `carburetor-gtk` - patched gtk theme
 - `carburetor-discord` - patched discord css
 - `carburetor-papirus-folders` - patched papirus folders
-- `carburetor-patch` - [patch.sh](./patch.sh)
+- `carburetor-patch` - [src/patch.sh](./src/patch.sh)
 
 #### Home Manager
 
@@ -79,7 +79,7 @@ git clone https://github.com/catppuccin/discord && cd discord
 yarn install
 
 # Patch each flavor
-../patch.sh all false node_modules/@catppuccin/palette
+../src/patch.sh all false node_modules/@catppuccin/palette
 
 # Build the port
 yarn build
