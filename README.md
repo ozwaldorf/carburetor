@@ -27,6 +27,14 @@ The current form of this scheme is as a direct patch for [catppuccin](https://gi
 
 ### Nix
 
+Add carburetor flake to your inputs:
+
+```nix
+inputs = {
+    carburetor.url = "github:ozwaldorf/carburetor";
+}
+```
+
 #### Packages
 
 Output packages are available through `carburetor.packages.${system}.*`, or as an overlay through `carburetor.overlays.default`:
@@ -36,6 +44,17 @@ Output packages are available through `carburetor.packages.${system}.*`, or as a
 - `carburetor-papirus-folders` - patched papirus folders
 - `carburetor-patch` - [src/patch.sh](./src/patch.sh)
 - `carburetor-zed` - whiskers zed theme
+
+#### Overlay
+
+Add the overlay to your nixpkgs:
+
+```nix
+import nixpkgs {
+  system = "x86_64-linux";
+  overlays = [ inputs.carburetor.overlays.default ];
+};
+```
 
 #### Home Manager
 
