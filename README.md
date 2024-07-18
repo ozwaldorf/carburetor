@@ -37,6 +37,8 @@ Output packages are available through `carburetor.packages.${system}.*`, or as a
 
 #### Home Manager
 
+> Note: nixpkgs overlay *MUST* be used for the home manager modules to work.
+
 Several themes can be automatically installed and/or configured via home manager.
 
 Simply import the default module to make all options available, or import individual modules for only their specific options:

@@ -1,8 +1,18 @@
 {
   description = "Overlay and modules for carburetor themes";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+    }:
     let
       inherit (nixpkgs) lib;
       forAllSystems =
@@ -16,6 +26,7 @@
             }
           )
         );
+
     in
     {
       overlays.default = import ./nix/pkgs;
@@ -26,11 +37,12 @@
           carburetor-papirus-folders
           carburetor-discord
           ;
+        docs = import ./nix/docs.nix pkgs;
       });
       homeManagerModules = {
-        webcord = import ./nix/home/webcord.nix self;
-        wezterm = import ./nix/home/wezterm.nix self;
-        default = import ./nix/home self;
+        webcord = import ./nix/home/webcord.nix;
+        wezterm = import ./nix/home/wezterm.nix;
+        default = import ./nix/home;
       };
     };
 }
