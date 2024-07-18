@@ -5,8 +5,7 @@ final: prev: {
     src = ../../.;
     installPhase = ''
       mkdir -p $out/bin
-      cp ./patch.sh $out/bin/carburetor-patch
-      chmod +x $out/bin/carburetor-patch
+      cp ./src/patch.sh $out/bin/carburetor-patch
     '';
   };
 
