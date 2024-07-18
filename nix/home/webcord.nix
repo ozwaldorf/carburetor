@@ -5,10 +5,10 @@
   ...
 }:
 {
-  options.carburetor.webcord.enable = lib.mkEnableOption "carburetor";
+  options.carburetor.webcord.enable = lib.mkEnableOption "installing carburetor for webcord";
   config = lib.mkIf config.carburetor.webcord.enable {
     xdg.configFile."WebCord/Themes/carburetor".source =
-      pkgs.carburetor-webcord
+      pkgs.carburetor-discord
       + "/carburetor"
       + (
         {

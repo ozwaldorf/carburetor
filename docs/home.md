@@ -1,29 +1,3 @@
-## carburetor\.enable
-
-
-
-Whether to enable all themes\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-` false `
-
-
-
-*Example:*
-` true `
-
-*Declared by:*
- - [\<carburetor/nix/home>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home)
-
-
-
 ## carburetor\.accent
 
 Global accent color to use\. Any catppuccin accent is valid
@@ -47,7 +21,7 @@ string
 
 
 
-Global variant to use (regular, warm, or cool)
+Global variant to use\. Values: regular, warm, cool
 
 
 
@@ -68,7 +42,7 @@ string
 
 
 
-Whether to enable carburetor\.
+Whether to enable installing carburetor for webcord\.
 
 
 
