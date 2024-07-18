@@ -22,19 +22,17 @@
     {
       overlays.default = import ./nix/pkgs;
 
+      homeManagerModules.default = import ./nix/home;
+
       packages = forAllSystems (
         pkgs:
+        let
+          overlayPackages = lib.removeAttrs (builtins.attrNames (self.overlays.default null null)) [ "lib" ];
+        in
         # re-export all packages created in the overlay
-        lib.attrsets.getAttrs (builtins.attrNames (self.overlays.default null null)) pkgs
-        // {
-          docs = import ./nix/docs.nix pkgs;
-        }
+        lib.attrsets.getAttrs overlayPackages pkgs // { docs = import ./nix/docs.nix pkgs; }
       );
 
-      homeManagerModules = {
-        default = import ./nix/home;
-        webcord = import ./nix/home/webcord.nix;
-        wezterm = import ./nix/home/wezterm.nix;
-      };
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
 }
