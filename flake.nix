@@ -23,10 +23,10 @@
           )
         );
 
-      carburetorLib = import ./nix/lib.nix;
+      themeLib = import ./nix/lib.nix;
       carburetorTheme = {
         name = "carburetor";
-        whiskersJson = ./src/whiskers.json;
+        whiskersJson = ./whiskers.json;
         variantNames = {
           mocha = "regular";
           macchiato = "warm";
@@ -35,20 +35,21 @@
         };
         defaultAccent = "blue";
       };
-      carburetorOverlay = carburetorLib.mkCustomThemeOverlay carburetorTheme;
-      carburetorHomeModule = carburetorLib.mkCustomHomeManagerModule carburetorTheme;
+      carburetorOverlay = themeLib.mkCustomThemeOverlay carburetorTheme;
+      carburetorHomeModule = themeLib.mkCustomHomeManagerModule carburetorTheme;
     in
     {
       # Nix library for custom catppuccin themes
-      lib = carburetorLib;
-
+      lib = themeLib;
       # Carburetor theme overlay
       overlays.default = carburetorOverlay;
       # Carburetor home manager module
       homeManagerModules.default = carburetorHomeModule;
 
       packages = forAllSystems (pkgs: {
-        docs = carburetorLib.mkDocs carburetorHomeModule pkgs;
+        # Options doc generator
+        docs = themeLib.mkDocs carburetorHomeModule pkgs;
+        # `carburetor-patch`
         patch = pkgs.carburetor.tools.patch;
       });
 

@@ -90,8 +90,9 @@ Detailed documentation on options is available at [docs/home.md](./docs/home.md)
 
 #### Making your own themes!
 
-Carburetor's nix flake can be used as a library to implement an overlay and home module for a custom catppuccin based theme. Usage is exactly the same as above, but tailored to the themes name, variants, and colors.
-These can be used directly in a nixos derivation for custom personal colorschemes, or used in a popular colorscheme's flake to provide theming for nix users.
+Carburetor's nix flake can be used as a library to implement an overlay and home module for a custom catppuccin based theme, based on a color override file for whiskers. Usage is exactly the same as above, but tailored to the themes name and custom variants. Anywhere `carburetor` is referenced, `your-theme` will be used instead.
+
+These custom themes can be defined and used directly in a nixos/home manager derivation, or used in a popular colorscheme's flake to provide theming for nix users:
 
 ```nix
 {
@@ -223,5 +224,8 @@ Heavily inspired from [oxocarbon](https://github.com/nyoom-engineering/oxocarbon
 nix flake check
 
 # generate docs
-nix build .\#checks.x86_64-linux.docs && cp -L result/* docs
+nix build .\#docs && cp -L result/* docs
+
+# generate patch tool
+whiskers --dry-run --color-overrides ./whiskers.json patch.tera > src/patch.sh
 ```
