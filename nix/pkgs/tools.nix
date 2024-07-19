@@ -5,21 +5,21 @@
   ...
 }:
 pkgs: {
-  # Patch tool used to easily modify existing themes
-  carburetor-patch = pkgs.stdenvNoCC.mkDerivation {
-    name = "carburetor-patch";
-    src = ../../.;
-    nativeBuildInputs = [ pkgs.catppuccin-whiskers ];
-    installPhase = ''
-      mkdir -p $out/bin
-      ls -lah
-      ${pkgs.lib.meta.getExe pkgs.catppuccin-whiskers} --dry-run --color-overrides ${whiskersJson} patch.tera > $out/bin/carburetor-patch
-      chmod +x $out/bin/carburetor-patch
-    '';
-  };
-
   lib = pkgs.lib // {
     carburetor = {
+      # Patch tool used to easily modify existing themes
+      patch = pkgs.stdenvNoCC.mkDerivation {
+        name = "carburetor-patch";
+        src = ../../.;
+        nativeBuildInputs = [ pkgs.catppuccin-whiskers ];
+        installPhase = ''
+          mkdir -p $out/bin
+          ls -lah
+          ${pkgs.lib.meta.getExe pkgs.catppuccin-whiskers} --dry-run --color-overrides ${whiskersJson} patch.tera > $out/bin/carburetor-patch
+          chmod +x $out/bin/carburetor-patch
+        '';
+      };
+
       # Utility to create a derivation based on a source that supports whiskers and provides a tera template.
       mkWhiskersDerivation =
         {

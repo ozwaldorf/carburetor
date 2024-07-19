@@ -9,7 +9,7 @@ let
   deps = pkgs.mkYarnPackage {
     inherit src;
     name = "catppuccin-discord-modules";
-    nativeBuildInputs = [ pkgs.carburetor-patch ];
+    nativeBuildInputs = [ pkgs.lib.carburetor.patch ];
     postBuild = ''
       carburetor-patch all false node_modules/@catppuccin/palette
     '';

@@ -21,7 +21,7 @@ pkgs.stdenv.mkDerivation {
       inherit accents;
       variant = flavor;
     }).out;
-  nativeBuildInputs = [ pkgs.carburetor-patch ];
+  nativeBuildInputs = [ pkgs.lib.carburetor.patch ];
   installPhase = ''
     carburetor-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} .
     mkdir -p $out/share/themes
