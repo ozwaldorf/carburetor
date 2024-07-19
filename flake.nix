@@ -37,7 +37,6 @@
       };
       carburetorOverlay = carburetorLib.mkCustomThemeOverlay carburetorTheme;
       carburetorHomeModule = carburetorLib.mkCustomHomeManagerModule carburetorTheme;
-      carburetorThemes = builtins.attrNames (carburetorOverlay null null);
     in
     {
       # Nix library for custom catppuccin themes
@@ -51,7 +50,7 @@
       # `nix flake check`
       checks = forAllSystems (
         pkgs:
-        lib.removeAttrs (lib.attrsets.getAttrs carburetorThemes pkgs).carburetor [ "tools" ]
+        lib.removeAttrs pkgs.carburetor [ "tools" ]
         // {
           docs = import ./nix/docs.nix self.homeManagerModules.default pkgs;
         }
