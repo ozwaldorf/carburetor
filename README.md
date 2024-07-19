@@ -218,10 +218,10 @@ Heavily inspired from [oxocarbon](https://github.com/nyoom-engineering/oxocarbon
 
 ## Development
 
-### Docs
-
-Nix docs can be generated and copied to the repo via:
-
 ```bash
-nix build .\#checks.docs && cp -L result/* docs
+# check packages
+nix flake check
+
+# generate docs
+nix build .\#checks.x86_64-linux.docs && cp -L result/* docs
 ```

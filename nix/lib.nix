@@ -49,4 +49,6 @@
   # };
   # ```
   mkCustomHomeManagerModule = args: import ./home/default.nix args;
+
+  mkDocs = homeModule: pkgs: import ./docs.nix homeModule pkgs;
 }

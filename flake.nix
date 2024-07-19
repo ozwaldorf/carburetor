@@ -47,14 +47,13 @@
       # Carburetor home manager module
       homeManagerModules.default = carburetorHomeModule;
 
+      packages = forAllSystems (pkgs: {
+        docs = carburetorLib.mkDocs carburetorHomeModule pkgs;
+        patch = pkgs.carburetor.tools.patch;
+      });
+
       # `nix flake check`
-      checks = forAllSystems (
-        pkgs:
-        lib.removeAttrs pkgs.carburetor [ "tools" ]
-        // {
-          docs = import ./nix/docs.nix self.homeManagerModules.default pkgs;
-        }
-      );
+      checks = forAllSystems (pkgs: lib.removeAttrs pkgs.carburetor [ "tools" ]);
 
       # `nix fmt`
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
