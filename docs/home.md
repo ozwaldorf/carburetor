@@ -12,9 +12,6 @@ string
 *Default:*
 ` "blue" `
 
-*Declared by:*
- - [\<carburetor/nix/home>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home)
-
 
 
 ## carburetor\.variant
@@ -32,9 +29,6 @@ string
 
 *Default:*
 ` "regular" `
-
-*Declared by:*
- - [\<carburetor/nix/home>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home)
 
 
 
@@ -59,9 +53,6 @@ boolean
 *Example:*
 ` true `
 
-*Declared by:*
- - [\<carburetor/nix/home/webcord\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/webcord.nix)
-
 
 
 ## carburetor\.wezterm\.enable
@@ -85,9 +76,6 @@ boolean
 *Example:*
 ` true `
 
-*Declared by:*
- - [\<carburetor/nix/home/wezterm\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/wezterm.nix)
-
 
 
 ## carburetor\.zed\.enable
@@ -110,8 +98,5 @@ boolean
 
 *Example:*
 ` true `
-
-*Declared by:*
- - [\<carburetor/nix/home/zed\.nix>](https://github.com/ozwaldorf/carburetor/blob/main/nix/home/zed.nix)
 
 

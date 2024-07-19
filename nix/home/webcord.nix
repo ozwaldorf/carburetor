@@ -1,3 +1,4 @@
+name:
 {
   pkgs,
   config,
@@ -5,8 +6,8 @@
   ...
 }:
 {
-  options.carburetor.webcord.enable = lib.mkEnableOption "installing carburetor for webcord";
-  config = lib.mkIf config.carburetor.webcord.enable (
+  options."${name}".webcord.enable = lib.mkEnableOption "installing ${name} for webcord";
+  config = lib.mkIf config."${name}".webcord.enable (
     let
       suffix =
         {
@@ -14,11 +15,11 @@
           warm = "-warm";
           cool = "-cool";
         }
-        ."${config.carburetor.variant}";
+        ."${config."${name}".variant}";
     in
     {
-      xdg.configFile."WebCord/Themes/carburetor${suffix}".source =
-        pkgs.carburetor-discord + "/carburetor${suffix}.css";
+      xdg.configFile."WebCord/Themes/${name}${suffix}".source =
+        pkgs."${name}-discord" + "/${name}${suffix}.css";
     }
   );
 }

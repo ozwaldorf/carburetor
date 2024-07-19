@@ -1,0 +1,176 @@
+#!/usr/bin/env bash
+flavor=$1
+transparent=$2
+path=$3
+if [[ -z "$flavor" || -z "$transparent" || -z "$path" ]]; then
+  echo "Usage: $0 <all|mocha|macchiato|frappe> <true|false> <source dir>"
+  exit 1
+fi
+
+patch () {
+  echo "Patching $flavor colors with carburetor $1"
+
+  ARGS=()
+  for r in "${COLORS[@]}"; do
+    ARGS+=("-e s/$r/Ig")
+  done
+
+  # shellcheck disable=SC2068
+  find "$path" -type f -exec sed -i ${ARGS[@]} {} +
+}
+
+case "$flavor" in
+  all)
+    $0 mocha "$2" "$3"
+    $0 macchiato "$2" "$3"
+    $0 frappe "$2" "$3"
+    ;;
+
+  mocha)
+    {% set c = flavors.mocha.colors -%}
+    # Carburetor
+    export COLORS=(
+      "#f5e0dc/#{{c.rosewater.hex}}"
+      "#f2cdcd/#{{c.flamingo.hex}}"
+      "#f5c2e7/#{{c.pink.hex}}"
+      "#cba6f7/#{{c.mauve.hex}}"
+      "#f38ba8/#{{c.red.hex}}"
+      "#eba0ac/#{{c.maroon.hex}}"
+      "#fab387/#{{c.peach.hex}}"
+      "#f9e2af/#{{c.yellow.hex}}"
+      "#a6e3a1/#{{c.green.hex}}"
+      "#94e2d5/#{{c.teal.hex}}"
+      "#89dceb/#{{c.sky.hex}}"
+      "#74c7ec/#{{c.sapphire.hex}}"
+      "#89b4fa/#{{c.blue.hex}}"
+      "#b4befe/#{{c.lavender.hex}}"
+      "#cdd6f4/#{{c.text.hex}}"
+      "#bac2de/#{{c.subtext1.hex}}"
+      "#a6adc8/#{{c.subtext0.hex}}"
+      "#9399b2/#{{c.overlay2.hex}}"
+      "#7f849c/#{{c.overlay1.hex}}"
+      "#6c7086/#{{c.overlay0.hex}}"
+      "#585b70/#{{c.surface2.hex}}"
+      "#45475a/#{{c.surface1.hex}}"
+      "#313244/#{{c.surface0.hex}}"
+      "#1e1e2e/#{{c.base.hex}}"
+      "#181825/#{{c.mantle.hex}}"
+      "#11111b/#{{c.crust.hex}}"
+    )
+    if [ "$transparent" != "true" ]; then
+      COLORS+=(
+        "#585b70/#{{c.surface2.hex}}"
+        "#45475a/#{{c.surface1.hex}}"
+        "#313244/#{{c.surface0.hex}}"
+        "#1e1e2e/#{{c.base.hex}}"
+        "#181825/#{{c.mantle.hex}}"
+        "#11111b/#{{c.crust.hex}}"
+      )
+    else
+      COLORS+=(
+        "#585b70/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
+        "#45475a/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
+        "#313244/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
+        "#1e1e2e/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
+        "#181825/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
+        "#11111b/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+      )
+    fi
+    patch;;
+
+  # Carburetor Cool
+  macchiato)
+    {% set c = flavors.macchiato.colors -%}
+    export COLORS=(
+      "#f4dbd6/#{{c.rosewater.hex}}"
+      "#f0c6c6/#{{c.flamingo.hex}}"
+      "#f5bde6/#{{c.pink.hex}}"
+      "#c6a0f6/#{{c.mauve.hex}}"
+      "#ed8796/#{{c.red.hex}}"
+      "#ee99a0/#{{c.maroon.hex}}"
+      "#f5a97f/#{{c.peach.hex}}"
+      "#eed49f/#{{c.yellow.hex}}"
+      "#a6da95/#{{c.green.hex}}"
+      "#8bd5ca/#{{c.teal.hex}}"
+      "#91d7e3/#{{c.sky.hex}}"
+      "#7dc4e4/#{{c.sapphire.hex}}"
+      "#8aadf4/#{{c.blue.hex}}"
+      "#b7bdf8/#{{c.lavender.hex}}"
+      "#cad3f5/#{{c.text.hex}}"
+      "#b8c0e0/#{{c.subtext1.hex}}"
+      "#a5adcb/#{{c.subtext0.hex}}"
+      "#939ab7/#{{c.overlay2.hex}}"
+      "#8087a2/#{{c.overlay1.hex}}"
+      "#6e738d/#{{c.overlay0.hex}}"
+    )
+    if [ "$transparent" != "true" ]; then
+      COLORS+=(
+        "#5b6078/#{{c.surface2.hex}}"
+        "#494d64/#{{c.surface1.hex}}"
+        "#363a4f/#{{c.surface0.hex}}"
+        "#24273a/#{{c.base.hex}}"
+        "#1e2030/#{{c.mantle.hex}}"
+        "#181926/#{{c.crust.hex}}"
+      )
+    else
+      COLORS+=(
+        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
+        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
+        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
+        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
+        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
+        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+      )
+    fi
+    patch;;
+
+  # Carburetor Warm
+  frappe)
+    {% set c = flavors.mocha.colors -%}
+    export COLORS=(
+      "#f2d5cf/#{{c.rosewater.hex}}"
+      "#eebebe/#{{c.flamingo.hex}}"
+      "#f4b8e4/#{{c.pink.hex}}"
+      "#ca9ee6/#{{c.mauve.hex}}"
+      "#e78284/#{{c.red.hex}}"
+      "#ea999c/#{{c.maroon.hex}}"
+      "#ef9f76/#{{c.peach.hex}}"
+      "#e5c890/#{{c.yellow.hex}}"
+      "#a6d189/#{{c.green.hex}}"
+      "#81c8be/#{{c.teal.hex}}"
+      "#99d1db/#{{c.sky.hex}}"
+      "#85c1dc/#{{c.sapphire.hex}}"
+      "#8caaee/#{{c.blue.hex}}"
+      "#babbf1/#{{c.lavender.hex}}"
+      "#c6d0f5/#{{c.text.hex}}"
+      "#b5bfe2/#{{c.subtext1.hex}}"
+      "#a5adce/#{{c.subtext0.hex}}"
+      "#949cbb/#{{c.overlay2.hex}}"
+      "#838ba7/#{{c.overlay1.hex}}"
+      "#737994/#{{c.overlay0.hex}}"
+    )
+    if [ "$transparent" != "true"  ]; then
+      COLORS+=(
+        "#626880/#{{c.surface2.hex}}"
+        "#51576d/#{{c.surface1.hex}}"
+        "#414559/#{{c.surface0.hex}}"
+        "#303446/#{{c.base.hex}}"
+        "#292c3c/#{{c.mantle.hex}}"
+        "#232634/#{{c.crust.hex}}"
+      )
+    else
+      COLORS+=(
+        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
+        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
+        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
+        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
+        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
+        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+      )
+    fi
+    patch;;
+
+  *)
+    echo "invalid flavor argument $flavor"
+    ;;
+esac

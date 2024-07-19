@@ -1,6 +1,6 @@
-final: prev:
+args: final: prev:
 (
-  import ./tools.nix prev
+  import ./tools.nix args prev
   // {
     ### Manual patches ###
     carburetor-discord = prev.callPackage ./discord.nix { };

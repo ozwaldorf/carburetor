@@ -1,13 +1,14 @@
+name:
 { lib, ... }:
 {
   imports = [
-    ./webcord.nix
-    ./wezterm.nix
-    ./zed.nix
+    (import ./webcord.nix name)
+    (import ./wezterm.nix name)
+    (import ./zed.nix name)
   ];
 
   options = {
-    carburetor = {
+    ${name} = {
       accent = lib.mkOption {
         type = with lib.types; uniq str;
         default = "blue";

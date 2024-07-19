@@ -24,9 +24,22 @@
         );
     in
     {
-      overlays.default = import ./nix/pkgs;
+      lib = import ./nix/lib.nix;
 
-      homeManagerModules.default = import ./nix/home;
+      overlays.default = (
+        self.lib.mkCustomThemeOverlay {
+          name = "carburetor";
+          whiskersJson = ./src/whiskers.json;
+          variantNames = {
+            mocha = "regular";
+            macchiato = "warm";
+            frappe = "cool";
+            latte = "light";
+          };
+        }
+      );
+
+      homeManagerModules.default = self.lib.mkCustomHomeManagerModule "carburetor";
 
       packages = forAllSystems (
         pkgs:
@@ -35,7 +48,7 @@
           overlayList = builtins.attrNames (self.overlays.default null null);
           overlayPkgs = lib.removeAttrs (lib.attrsets.getAttrs overlayList pkgs) [ "lib" ];
         in
-        overlayPkgs // { docs = import ./nix/docs.nix pkgs; }
+        overlayPkgs // { docs = import ./nix/docs.nix self.homeManagerModules.default pkgs; }
       );
 
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);

@@ -1,4 +1,4 @@
-pkgs:
+rootModule: pkgs:
 let
   gitHubDeclaration = user: repo: branch: subpath: {
     url = "https://github.com/${user}/${repo}/blob/${branch}/${subpath}";
@@ -24,7 +24,7 @@ let
 
   eval = pkgs.lib.evalModules {
     modules = [
-      ./home
+      rootModule
       { _module.check = false; }
     ];
   };
