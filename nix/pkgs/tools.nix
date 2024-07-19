@@ -27,10 +27,6 @@ pkgs: {
           whiskersOverrides ? "{}",
           # Color overrides file to pass
           whiskersColorOverrides ? ../../src/whiskers.json,
-          # Rename files to theme name
-          renameFiles ? true,
-          # Rename text inside files to theme name
-          renameText ? true,
 
           # Inner mkDerivation function to use
           mkDerivation ? pkgs.stdenvNoCC.mkDerivation,
@@ -62,9 +58,10 @@ pkgs: {
 
               # Replace variant texts
               find . -type f -exec sed -i \
-                -e 's/mocha/regular/I' \
-                -e 's/macchiato/warm/I' \
-                -e 's/frapp[eé]/cool/I' \
+                -e 's/catppuccin/${theme}/Ig' \
+                -e 's/mocha/regular/Ig' \
+                -e 's/macchiato/warm/Ig' \
+                -e 's/frapp(e|é)/cool/Ig' \
                 {} \;
 
               runHook postBuild
