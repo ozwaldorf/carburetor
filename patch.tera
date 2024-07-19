@@ -68,12 +68,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#585b70/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
-        "#45475a/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
-        "#313244/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
-        "#1e1e2e/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
-        "#181825/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
-        "#11111b/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+        "#585b70/#{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#45475a/#{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#313244/#{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#1e1e2e/#{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#181825/#{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#11111b/#{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
@@ -114,12 +114,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
-        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
-        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
-        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
-        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
-        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
@@ -160,12 +160,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8))}}"
-        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8))}}"
-        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8))}}"
-        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8))}}"
-        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8))}}"
-        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8))}}"
+        "#626880/#{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#51576d/#{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#414559/#{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#303446/#{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#292c3c/#{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#232634/#{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
