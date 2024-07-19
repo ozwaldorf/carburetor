@@ -56,8 +56,12 @@ This provides the following raw theme packages:
 - `pkgs.carburetor.hyprlock` - patched hyprlock config
 - `pkgs.carburetor.discord` - patched discord css
 - `pkgs.carburetor.papirus-folders` - patched papirus folders
-- `pkgs.carburetor.patch` - [src/patch.sh](./src/patch.sh)
 - `pkgs.carburetor.zed` - whiskers zed theme
+
+And the following tools:
+
+- `pkgs.carburetor.tools.patch` - [src/patch.sh](./src/patch.sh)
+- `pkgs.carburetor.tools.mkWhiskersDerivation` - Create a derivation from a source's whiskers template and output the files
 
 #### Home Manager
 
