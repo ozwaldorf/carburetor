@@ -1,32 +1,43 @@
 {
+  name,
+  variantNames,
+  defaultAccent,
+  ...
+}:
+{
   pkgs,
-  variant ? "regular",
-  accents ? [ "blue" ],
+  stdenvNoCC,
+  catppuccin-gtk,
+  variant ? variantNames.mocha,
+  accents ? [ defaultAccent ],
   transparent ? true,
   ...
 }:
 let
   flavor =
     {
-      regular = "mocha";
-      warm = "macchiato";
-      cool = "frappe";
+      "${variantNames.mocha}" = "mocha";
+      "${variantNames.macchiato}" = "macchiato";
+      "${variantNames.frappe}" = "frappe";
+      "${variantNames.latte}" = "latte";
     }
     ."${variant}";
 in
-pkgs.stdenv.mkDerivation {
-  name = "carburetor-gtk";
+stdenvNoCC.mkDerivation {
+  name = "${name}-gtk";
   src =
-    (pkgs.catppuccin-gtk.override {
+    (catppuccin-gtk.override {
       inherit accents;
       variant = flavor;
     }).out;
-  nativeBuildInputs = [ pkgs.lib.carburetor.patch ];
+  nativeBuildInputs = [ pkgs."${name}".tools.patch ];
+  patchPhase = ''
+    ${name}-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} share/themes
+  '';
   installPhase = ''
-    carburetor-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} .
     mkdir -p $out/share/themes
-    cp -R share/themes/catppuccin-*-standard $out/share/themes/carburetor
-    cp -R share/themes/catppuccin-*-standard-hdpi $out/share/themes/carburetor-hdpi
-    cp -R share/themes/catppuccin-*-standard-xhdpi $out/share/themes/carburetor-xhdpi
+    cp -R share/themes/catppuccin-*-standard $out/share/themes/${name}
+    cp -R share/themes/catppuccin-*-standard-hdpi $out/share/themes/${name}-hdpi
+    cp -R share/themes/catppuccin-*-standard-xhdpi $out/share/themes/${name}-xhdpi
   '';
 }

@@ -1,24 +1,36 @@
 {
+  name,
+  variantNames,
+  defaultAccent,
+  ...
+}:
+{
   pkgs,
-  variant ? "regular",
-  accent ? "blue",
+  lib,
+  stdenvNoCC,
+  catppuccin-papirus-folders,
+  variant ? variantNames.mocha,
+  accent ? defaultAccent,
   ...
 }:
 let
   flavor =
     {
-      regular = "mocha";
-      warm = "macchiato";
-      cool = "frappe";
+      "${variantNames.mocha}" = "mocha";
+      "${variantNames.macchiato}" = "macchiato";
+      "${variantNames.frappe}" = "frappe";
+      "${variantNames.latte}" = "latte";
     }
     ."${variant}";
 in
-pkgs.stdenvNoCC.mkDerivation {
-  name = "carburetor-papirus-folders";
-  src = (pkgs.catppuccin-papirus-folders.override { inherit flavor accent; }).out;
-  nativeBuildInputs = with pkgs; [ lib.carburetor.patch ];
+stdenvNoCC.mkDerivation {
+  name = "${name}-papirus-folders";
+  src = (catppuccin-papirus-folders.override { inherit flavor accent; }).out;
+  nativeBuildInputs = [ pkgs."${name}".tools.patch ];
+  patchPhase = ''
+    ${name}-patch ${flavor} false share/icons
+  '';
   installPhase = ''
-    carburetor-patch ${flavor} false share/icons
     mkdir -p $out/share
     cp -R share/icons $out/share
   '';

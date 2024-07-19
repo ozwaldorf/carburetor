@@ -7,14 +7,18 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
 1. [Previews](#previews)
 2. [Usage](#usage)
     1. [Nix](#nix)
+      1. [Theme Packages](#theme-packages)
+      2. [Overlay](#overlay)
+      3. [Home Manager](#home-manager)
+      4. [Making your own themes!](#making-your-own-themes-)
     2. [Patch Tool](#patch-tool)
-        1. [Discord](#discord)
+      1. [Discord](#discord)
     3. [Catppuccin Whiskers](#catppuccin-whiskers)
-        1. [Zed](#zed)
+      1. [Zed](#zed)
     4. [Config Examples](#config-examples)
-        1. [Nvim](#nvim)
-        2. [Wezterm](#wezterm)
-        3. [Userstyles](#userstyles)
+      1. [Nvim](#nvim)
+      2. [Wezterm](#wezterm)
+      3. [Userstyles](#userstyles)
 3. [Honorable Mentions](#honorable-mentions)
 
 ## Previews
@@ -35,32 +39,32 @@ inputs = {
 }
 ```
 
-#### Packages
-
-Output packages are available through `carburetor.packages.${system}.*`, or as an overlay through `carburetor.overlays.default`:
-
-- `carburetor-gtk` - patched gtk theme
-- `carburetor-discord` - patched discord css
-- `carburetor-papirus-folders` - patched papirus folders
-- `carburetor-patch` - [src/patch.sh](./src/patch.sh)
-- `carburetor-zed` - whiskers zed theme
-
 #### Overlay
 
-Add the overlay to your nixpkgs:
+Add the overlay to your nixpkgs to insert the theme's package set:
 
 ```nix
-import nixpkgs {
-  system = "x86_64-linux";
+pkgs = import nixpkgs {
+  inherit system;
   overlays = [ inputs.carburetor.overlays.default ];
 };
 ```
 
+This provides the following raw theme packages:
+
+- `pkgs.carburetor.gtk` - patched gtk theme
+- `pkgs.carburetor.hyprland` - whiskers hyprland themes
+- `pkgs.carburetor.hyprlock` - patched hyprlock config
+- `pkgs.carburetor.discord` - patched discord css
+- `pkgs.carburetor.papirus-folders` - patched papirus folders
+- `pkgs.carburetor.patch` - [src/patch.sh](./src/patch.sh)
+- `pkgs.carburetor.zed` - whiskers zed theme
+
 #### Home Manager
 
-> Note: nixpkgs overlay *MUST* be used for the home manager modules to work.
+> Note: The theme's nixpkgs overlay *MUST* be used for the home manager modules to work.
 
-Example:
+Example home configuration:
 
 ```nix
 # import the carburetor module
@@ -68,16 +72,66 @@ imports = [ inputs.carburetor.homeManagerModules.default ];
 
 # configure carburetor theme installation
 carburetor = {
+  config = {
     variant = "regular";
     accent = "blue";
-
-    webcord.enable = true; # install and configure theme
-    wezterm.enable = true; # installs all theme files, needs to be configured seperately
-    zed.enable = true; # installs all theme files, needs to be configured seperately
+  };
+  themes = {
+    hyprland.enable = true;
+    hyprlock.enable = true;
+    webcord.enable = true;
+    wezterm.enable = true;
+    zed.enable = true;
+  };
 }
 ```
 
-Detailed documentation on options are available at [docs/home.md](./docs/home.md).
+Detailed documentation on options is available at [docs/home.md](./docs/home.md).
+
+#### Making your own themes!
+
+Carburetor's nix flake can be used as a library to implement an overlay and home module for a custom catppuccin based theme. Usage is exactly the same as above, but tailored to the themes name, variants, and colors.
+These can be used directly in a nixos derivation for custom personal colorschemes, or used in a popular colorscheme's flake to provide theming for nix users.
+
+```nix
+{
+  description = "Example theme flake";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    carburetor.url = "github:ozwaldorf/carburetor";
+  };
+  outputs = { self, nixpkgs, carburetor }:
+  let
+    # Configuration for the custom theme
+    exampleTheme = {
+      # Theme name used in all packages and configuration options.
+      name = "example-theme";
+      # Variant names to replace with
+      variantNames = {
+        mocha = "darker";
+        macchiato = "dark";
+        frappe = "medium";
+        latte = "light";
+      };
+      # Default accent to select in configuration options
+      defaultAccent = "pink";
+      # Path to a whiskers color override file for the theme
+      whiskersJson = ./path/to/whiskers.json;
+    };
+    # Create an overlay for the theme packages
+    exampleThemeOverlay = carburetor.lib.mkCustomThemeOverlay exampleTheme;
+    # Create a home manager module for configuring the themes
+    exampleThemeHomeModule = carburetor.lib.mkCustomHomeManagerModule exampleTheme;
+  in
+  {
+    # Output the overlay and module for flake consumers
+    overlays.default = exampleThemeOverlay;
+    homeManagerModules.default = exampleThemeHomeModule;
+  };
+};
+```
+
+---
 
 ### Patch Tool
 
@@ -113,6 +167,8 @@ yarn build
 # cp dist/dist/catppuccin-macchiato.theme.css ~/.config/WebCord/Themes/carburator-cool
 # cp dist/dist/catppuccin-frappe.theme.css ~/.config/WebCord/Themes/carburator-warm
 ```
+
+---
 
 ### Catppuccin `whiskers`
 
@@ -167,6 +223,5 @@ Heavily inspired from [oxocarbon](https://github.com/nyoom-engineering/oxocarbon
 Nix docs can be generated and copied to the repo via:
 
 ```bash
-nix build .\#docs && cp -L result/* docs
+nix build .\#checks.docs && cp -L result/* docs
 ```
-

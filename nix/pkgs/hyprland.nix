@@ -1,5 +1,6 @@
-{ lib, fetchFromGitHub, ... }:
-lib.carburetor.mkWhiskersDerivation {
+{ name, ... }:
+{ pkgs, fetchFromGitHub, ... }:
+pkgs."${name}".tools.mkWhiskersDerivation {
   pname = "hyprland";
   src = fetchFromGitHub {
     owner = "catppuccin";

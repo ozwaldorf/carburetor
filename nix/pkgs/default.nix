@@ -1,14 +1,122 @@
-args: final: prev:
-(
-  import ./tools.nix args prev
-  // {
-    ### Manual patches ###
-    carburetor-discord = prev.callPackage ./discord.nix { };
-    carburetor-gtk = prev.callPackage ./gtk.nix { };
-    carburetor-papirus-folders = prev.callPackage ./papirus-folders.nix { };
+args@{
+  name,
+  variantNames,
+  whiskersJson,
+  defaultAccent,
+  ...
+}:
+final: prev: {
+  # Theme namespace
+  "${name}" =
+    let
+      mkThemePackage = module: prev.callPackage (import module args) { };
+    in
+    {
+      # Tools used to create theme packages
+      tools = {
+        # Generic patching tool
+        patch = prev.stdenvNoCC.mkDerivation {
+          name = "${name}-patch";
+          src = ../../.;
+          nativeBuildInputs = [ prev.catppuccin-whiskers ];
+          installPhase = ''
+            mkdir -p $out/bin
+            ${prev.lib.meta.getExe prev.catppuccin-whiskers} --dry-run --color-overrides ${whiskersJson} patch.tera > $out/bin/${name}-patch
+            chmod +x $out/bin/${name}-patch
+          '';
+          meta = {
+            mainProgram = "${name}-patch";
+          };
+        };
 
-    ### Whiskers themes ###
-    carburetor-hyprland = prev.callPackage ./hyprland.nix { };
-    carburetor-zed = prev.callPackage ./zed.nix { };
-  }
-)
+        # Utility to create a derivation based on a source that supports whiskers and provides a tera template.
+        mkWhiskersDerivation =
+          {
+            # Theme name
+            theme ? name,
+            # Package name
+            pname,
+
+            # Glob is used by default to let bash find the tera file in the project root
+            whiskersPath ? "*.tera",
+            # Output format needed for the template
+            whiskersOutput ? "json",
+            # Overrides to pass
+            whiskersOverrides ? "{}",
+            # Color overrides file to pass
+            whiskersColorOverrides ? whiskersJson,
+
+            # Inner mkDerivation function to use
+            mkDerivation ? prev.stdenvNoCC.mkDerivation,
+
+            nativeBuildInputs ? [ ],
+            ...
+          }@inputs:
+          mkDerivation (
+            {
+              name = theme + "-" + pname;
+              nativeBuildInputs = nativeBuildInputs ++ [
+                prev.tree
+                prev.catppuccin-whiskers
+              ];
+              buildPhase = ''
+                runHook preBuild
+
+                CMD='${prev.lib.meta.getExe prev.catppuccin-whiskers}
+                  ${whiskersPath}
+                  -o ${whiskersOutput}
+                  --color-overrides ${whiskersColorOverrides}'
+
+                $CMD
+
+                # Perform a dry run and capture the list of output files
+                IFS=$'\n' export files=($(
+                  $CMD --dry-run | awk -F 'into ' '{print $2}'
+                ))
+
+                # Replace name and variant texts
+                find . -type f -exec sed -i \
+                  -e 's/catppuccin/${theme}/Ig' \
+                  -e 's/mocha/${variantNames.mocha}/Ig' \
+                  -e 's/macchiato/${variantNames.macchiato}/Ig' \
+                  -e 's/frapp(e|é)/${variantNames.frappe}/Ig' \
+                  -e 's/latte/${variantNames.latte}/Ig' \
+                  {} \;
+
+                runHook postBuild
+              '';
+              # Installation phase. By default; will iterate over `$files` whiskers output
+              # and copy them to $out, and rename them to the `whiskersRename` option
+              installPhase = ''
+                runHook preInstall
+
+                mkdir -p $out
+                for output in "''${files[@]}"; do
+                  echo "Renaming and copying $output"
+
+                  RENAME=''${output/catppuccin/${theme}}
+                  RENAME=''${RENAME/mocha/${variantNames.mocha}}
+                  RENAME=''${RENAME/macchiato/${variantNames.macchiato}}
+                  RENAME=''${RENAME/frappe/${variantNames.frappe}}
+                  RENAME=''${RENAME/latte/${variantNames.latte}}
+                  if [ "$output" != "$RENAME" ]; then
+                    cp $output $RENAME
+                  fi
+                  cp -r --parent $RENAME $out
+                done
+
+                runHook postInstall
+              '';
+            }
+            // inputs
+          );
+      };
+
+      "discord" = mkThemePackage ./discord.nix;
+      "gtk" = mkThemePackage ./gtk.nix;
+      "hyprland" = mkThemePackage ./hyprland.nix;
+      "hyprlock" = mkThemePackage ./hyprlock.nix;
+      "papirus-folders" = mkThemePackage ./papirus-folders.nix;
+      "zed" = mkThemePackage ./zed.nix;
+    };
+}

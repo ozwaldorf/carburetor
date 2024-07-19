@@ -1,5 +1,5 @@
 {
-  description = "Overlay and modules for carburetor themes";
+  description = "Carburetor's theme and customized tooling flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
@@ -22,35 +22,42 @@
             }
           )
         );
+
+      carburetorLib = import ./nix/lib.nix;
+      carburetorTheme = {
+        name = "carburetor";
+        whiskersJson = ./src/whiskers.json;
+        variantNames = {
+          mocha = "regular";
+          macchiato = "warm";
+          frappe = "cool";
+          latte = "light";
+        };
+        defaultAccent = "blue";
+      };
+      carburetorOverlay = carburetorLib.mkCustomThemeOverlay carburetorTheme;
+      carburetorHomeModule = carburetorLib.mkCustomHomeManagerModule carburetorTheme;
+      carburetorThemes = builtins.attrNames (carburetorOverlay null null);
     in
     {
-      lib = import ./nix/lib.nix;
+      # Nix library for custom catppuccin themes
+      lib = carburetorLib;
 
-      overlays.default = (
-        self.lib.mkCustomThemeOverlay {
-          name = "carburetor";
-          whiskersJson = ./src/whiskers.json;
-          variantNames = {
-            mocha = "regular";
-            macchiato = "warm";
-            frappe = "cool";
-            latte = "light";
-          };
+      # Carburetor theme overlay
+      overlays.default = carburetorOverlay;
+      # Carburetor home manager module
+      homeManagerModules.default = carburetorHomeModule;
+
+      # `nix flake check`
+      checks = forAllSystems (
+        pkgs:
+        lib.removeAttrs (lib.attrsets.getAttrs carburetorThemes pkgs).carburetor [ "tools" ]
+        // {
+          docs = import ./nix/docs.nix self.homeManagerModules.default pkgs;
         }
       );
 
-      homeManagerModules.default = self.lib.mkCustomHomeManagerModule "carburetor";
-
-      packages = forAllSystems (
-        pkgs:
-        let
-          # re-export all packages created in the overlay
-          overlayList = builtins.attrNames (self.overlays.default null null);
-          overlayPkgs = lib.removeAttrs (lib.attrsets.getAttrs overlayList pkgs) [ "lib" ];
-        in
-        overlayPkgs // { docs = import ./nix/docs.nix self.homeManagerModules.default pkgs; }
-      );
-
+      # `nix fmt`
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
 }

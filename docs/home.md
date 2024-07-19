@@ -1,11 +1,11 @@
-## carburetor\.accent
+## carburetor\.global\.accent
 
 Global accent color to use\. Any catppuccin accent is valid
 
 
 
 *Type:*
-string
+one of “rosewater”, “flamingo”, “pink”, “mauve”, “red”, “maroon”, “peach”, “yellow”, “green”, “teal”, “sky”, “sapphire”, “blue”, “lavender”
 
 
 
@@ -14,16 +14,16 @@ string
 
 
 
-## carburetor\.variant
+## carburetor\.global\.variant
 
 
 
-Global variant to use\. Values: regular, warm, cool
+Global variant to use
 
 
 
 *Type:*
-string
+one of “cool”, “light”, “warm”, “regular”
 
 
 
@@ -32,7 +32,53 @@ string
 
 
 
-## carburetor\.webcord\.enable
+## carburetor\.themes\.hyprland\.enable
+
+
+
+Whether to enable installing carburetor for hyprland\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.hyprlock\.enable
+
+
+
+Whether to enable installing carburetor for hyprlock\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.webcord\.enable
 
 
 
@@ -55,7 +101,7 @@ boolean
 
 
 
-## carburetor\.wezterm\.enable
+## carburetor\.themes\.wezterm\.enable
 
 
 
@@ -78,7 +124,7 @@ boolean
 
 
 
-## carburetor\.zed\.enable
+## carburetor\.themes\.zed\.enable
 
 
 
