@@ -1,6 +1,6 @@
 ## carburetor\.config\.accent
 
-Global accent color to use\. Any catppuccin accent is valid
+Theme accent color to use
 
 
 
@@ -18,7 +18,7 @@ one of “rosewater”, “flamingo”, “pink”, “mauve”, “red”, “m
 
 
 
-Global variant to use
+Theme variant to use
 
 
 

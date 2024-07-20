@@ -15,34 +15,31 @@ args@{
     (import ./zed.nix args)
   ];
 
-  options = {
-    "${name}".config = {
-      accent = lib.mkOption {
-        description = "Global accent color to use. Any catppuccin accent is valid";
-        type = lib.types.enum [
-          "rosewater"
-          "flamingo"
-          "pink"
-          "mauve"
-          "red"
-          "maroon"
-          "peach"
-          "yellow"
-          "green"
-          "teal"
-          "sky"
-          "sapphire"
-          "blue"
-          "lavender"
-        ];
-        default = defaultAccent;
-
-      };
-      variant = lib.mkOption {
-        description = "Global variant to use";
-        type = lib.types.enum (builtins.attrValues variantNames);
-        default = variantNames.mocha;
-      };
+  options.${name}.config = {
+    variant = lib.mkOption {
+      description = "Theme variant to use";
+      type = lib.types.enum (builtins.attrValues variantNames);
+      default = variantNames.mocha;
+    };
+    accent = lib.mkOption {
+      description = "Theme accent color to use";
+      type = lib.types.enum [
+        "rosewater"
+        "flamingo"
+        "pink"
+        "mauve"
+        "red"
+        "maroon"
+        "peach"
+        "yellow"
+        "green"
+        "teal"
+        "sky"
+        "sapphire"
+        "blue"
+        "lavender"
+      ];
+      default = defaultAccent;
     };
   };
 }

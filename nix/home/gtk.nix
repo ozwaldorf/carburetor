@@ -16,14 +16,15 @@
     icon = lib.mkEnableOption "installing patched papirus icons";
     gnomeShellTheme = lib.mkEnableOption "installing gtk theme for GNOME Shell";
     size = lib.mkOption {
+      description = "Size variant for gtk";
       type = lib.types.enum [
         "standard"
         "compact"
       ];
       default = "standard";
-      description = "Size variant for gtk";
     };
     tweaks = lib.mkOption {
+      description = "Tweaks for gtk";
       type = lib.types.listOf (
         lib.types.enum [
           "black"
@@ -33,9 +34,7 @@
         ]
       );
       default = [ ];
-      description = "Tweaks for gtk";
     };
-
   };
 
   config =
@@ -48,7 +47,7 @@
       (lib.mkIf cfg.enable {
         gtk.theme = {
           name = "${name}-${options.variant}-${options.accent}-${cfg.size}+${lib.concatStringsSep "," cfg.tweaks}";
-          package = pkgs.catppuccin-gtk.override {
+          package = pkgs.${name}.gtk.override {
             inherit (cfg) size tweaks;
             accents = [ options.accent ];
             variant = options.flavor;
@@ -65,7 +64,7 @@
           in
           {
             name = "Papirus-${polarity}";
-            package = pkgs.catppuccin-papirus-folders.override { inherit (cfg.icon) accent flavor; };
+            package = pkgs.${name}.papirus-folders.override { inherit (cfg.icon) accent flavor; };
           };
       })
 

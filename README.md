@@ -80,6 +80,13 @@ carburetor = {
     accent = "blue";
   };
   themes = {
+    gtk = {
+        enable = true;
+        icon = true;
+        # size = "compact";
+        # tweaks = "float";
+        # gnomeShellTheme = true;
+    };
     hyprland.enable = true;
     hyprlock.enable = true;
     webcord.enable = true;
