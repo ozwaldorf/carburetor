@@ -55,14 +55,10 @@
       });
 
       # `nix flake check`
-      checks = forAllSystems (
-        pkgs:
-        # Check all theme packages
-        lib.removeAttrs pkgs.carburetor [ "tools" ]
-      );
+      checks = forAllSystems (pkgs: lib.removeAttrs pkgs.carburetor [ "tools" ]);
 
-      homeConfigurations."example" =
-        # Home manager 24.05
+      # Standalone home manager usage example
+      homeConfigurations.example =
         (builtins.getFlake "github:nix-community/home-manager/e1391fb22e18a36f57e6999c7a9f966dc80ac073")
         .lib.homeManagerConfiguration
           {
@@ -77,8 +73,6 @@
                   username = "example";
                   homeDirectory = "/home/example";
                   stateVersion = "24.05";
-                  # hide nixpkgs warning
-                  enableNixpkgsReleaseCheck = false;
                 };
 
                 carburetor = {

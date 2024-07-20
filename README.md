@@ -97,6 +97,7 @@ carburetor = {
 ```
 
 Detailed documentation on options is available at [docs/home.md](./docs/home.md).
+A complete standalone home configuration example can be found in the main flake.nix, under `homeConfigurations.example`.
 
 #### Making your own themes!
 

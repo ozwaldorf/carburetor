@@ -29,11 +29,10 @@
         lib.types.enum [
           "black"
           "rimless"
-          "normal"
           "float"
         ]
       );
-      default = [ "normal" ];
+      default = [ ];
     };
   };
 
@@ -41,7 +40,9 @@
     let
       cfg = config.${name}.themes.gtk;
       options = config.${name}.config;
-      gtkName = "${name}-${options.variant}-${options.accent}-${cfg.size}+${lib.concatStringsSep "," cfg.tweaks}";
+      gtkName = "${name}-${options.variant}-${options.accent}-${cfg.size}${
+        if cfg.tweaks != [ ] then "+" + lib.concatStringsSep "," cfg.tweaks else ""
+      }";
     in
     lib.mkMerge [
       # Configure gtk theme
