@@ -32,6 +32,111 @@ one of “cool”, “light”, “warm”, “regular”
 
 
 
+## carburetor\.themes\.gtk\.enable
+
+
+
+Whether to enable installing and configuring gtk themes\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.gtk\.gnomeShellTheme
+
+
+
+Whether to enable installing gtk theme for GNOME Shell\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.gtk\.icon
+
+
+
+Whether to enable installing patched papirus icons\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.gtk\.size
+
+
+
+Size variant for gtk
+
+
+
+*Type:*
+one of “standard”, “compact”
+
+
+
+*Default:*
+` "standard" `
+
+
+
+## carburetor\.themes\.gtk\.tweaks
+
+
+
+Tweaks for gtk
+
+
+
+*Type:*
+list of (one of “black”, “rimless”, “normal”, “float”)
+
+
+
+*Default:*
+` [ ] `
+
+
+
 ## carburetor\.themes\.hyprland\.enable
 
 
