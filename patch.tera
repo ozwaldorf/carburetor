@@ -50,12 +50,6 @@ case "$flavor" in
       "#9399b2/#{{c.overlay2.hex}}"
       "#7f849c/#{{c.overlay1.hex}}"
       "#6c7086/#{{c.overlay0.hex}}"
-      "#585b70/#{{c.surface2.hex}}"
-      "#45475a/#{{c.surface1.hex}}"
-      "#313244/#{{c.surface0.hex}}"
-      "#1e1e2e/#{{c.base.hex}}"
-      "#181825/#{{c.mantle.hex}}"
-      "#11111b/#{{c.crust.hex}}"
     )
     if [ "$transparent" != "true" ]; then
       COLORS+=(
