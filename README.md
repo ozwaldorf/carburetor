@@ -108,11 +108,8 @@ These custom themes can be defined and used directly in a nixos/home manager der
 ```nix
 {
   description = "Example theme flake";
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    carburetor.url = "github:ozwaldorf/carburetor";
-  };
-  outputs = { self, nixpkgs, carburetor }:
+  inputs.carburetor.url = "github:ozwaldorf/carburetor";
+  outputs = { self, carburetor }:
   let
     # Configuration for the custom theme
     exampleTheme = {
