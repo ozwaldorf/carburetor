@@ -49,8 +49,8 @@
           name = "${name}-${options.variant}-${options.accent}-${cfg.size}+${lib.concatStringsSep "," cfg.tweaks}";
           package = pkgs.${name}.gtk.override {
             inherit (cfg) size tweaks;
+            inherit (options) variant;
             accents = [ options.accent ];
-            variant = options.flavor;
           };
         };
       })
