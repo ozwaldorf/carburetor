@@ -12,32 +12,37 @@
   accents ? [ defaultAccent ],
   transparent ? true,
   ...
-}:
+}@extraArgs:
 let
-  flavor =
-    {
-      "${variantNames.mocha}" = "mocha";
-      "${variantNames.macchiato}" = "macchiato";
-      "${variantNames.frappe}" = "frappe";
-      "${variantNames.latte}" = "latte";
-    }
-    ."${variant}";
+  inherit (pkgs."${name}") tools;
+  flavor = tools.toFlavor variant;
 in
 stdenvNoCC.mkDerivation {
   name = "${name}-gtk";
   src =
-    (catppuccin-gtk.override {
-      inherit accents;
-      variant = flavor;
-    }).out;
-  nativeBuildInputs = [ pkgs."${name}".tools.patch ];
+    (
+      catppuccin-gtk.override {
+        inherit accents;
+        variant = flavor;
+      }
+      // extraArgs
+    ).out;
+  nativeBuildInputs = [ tools.patch ];
   patchPhase = ''
     ${name}-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} share/themes
+    ls share/themes | while read output; do
+      RENAME=''${output/catppuccin/${name}}
+      RENAME=''${RENAME/mocha/${variantNames.mocha}}
+      RENAME=''${RENAME/macchiato/${variantNames.macchiato}}
+      RENAME=''${RENAME/frappe/${variantNames.frappe}}
+      RENAME=''${RENAME/latte/${variantNames.latte}}
+      if [ "$output" != "$RENAME" ]; then
+        mv -v share/themes/$output share/themes/$RENAME
+      fi
+    done
   '';
   installPhase = ''
-    mkdir -p $out/share/themes
-    cp -R share/themes/catppuccin-*-standard $out/share/themes/${name}
-    cp -R share/themes/catppuccin-*-standard-hdpi $out/share/themes/${name}-hdpi
-    cp -R share/themes/catppuccin-*-standard-xhdpi $out/share/themes/${name}-xhdpi
+    mkdir -p $out
+    cp -R share $out
   '';
 }

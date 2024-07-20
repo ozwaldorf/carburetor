@@ -110,6 +110,17 @@ final: prev: {
             }
             // inputs
           );
+
+        toFlavor =
+          variant:
+          {
+            "${variantNames.mocha}" = "mocha";
+            "${variantNames.macchiato}" = "macchiato";
+            "${variantNames.frappe}" = "frappe";
+            "${variantNames.latte}" = "latte";
+          }
+          ."${variant}";
+
       };
 
       "discord" = mkThemePackage ./discord.nix;

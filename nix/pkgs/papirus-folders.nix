@@ -14,19 +14,13 @@
   ...
 }:
 let
-  flavor =
-    {
-      "${variantNames.mocha}" = "mocha";
-      "${variantNames.macchiato}" = "macchiato";
-      "${variantNames.frappe}" = "frappe";
-      "${variantNames.latte}" = "latte";
-    }
-    ."${variant}";
+  inherit (pkgs."${name}") tools;
+  flavor = tools.toFlavor variant;
 in
 stdenvNoCC.mkDerivation {
   name = "${name}-papirus-folders";
   src = (catppuccin-papirus-folders.override { inherit flavor accent; }).out;
-  nativeBuildInputs = [ pkgs."${name}".tools.patch ];
+  nativeBuildInputs = [ tools.patch ];
   patchPhase = ''
     ${name}-patch ${flavor} false share/icons
   '';
