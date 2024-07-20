@@ -64,7 +64,7 @@
           in
           {
             name = "Papirus-${polarity}";
-            package = pkgs.${name}.papirus-folders.override { inherit (cfg.icon) accent flavor; };
+            package = pkgs.${name}.papirus-folders.override { inherit (options) accent variant; };
           };
       })
 
