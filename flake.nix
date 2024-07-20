@@ -2,6 +2,7 @@
   description = "Carburetor's theme and customized tooling flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
   };
   nixConfig = {
     extra-substituters = [ "https://cache.garnix.io" ];
@@ -54,7 +55,55 @@
       });
 
       # `nix flake check`
-      checks = forAllSystems (pkgs: lib.removeAttrs pkgs.carburetor [ "tools" ]);
+      checks = forAllSystems (
+        pkgs:
+        # Check all theme packages
+        lib.removeAttrs pkgs.carburetor [ "tools" ]
+      );
+
+      homeConfigurations."example" =
+        # Home manager 24.05
+        (builtins.getFlake "github:nix-community/home-manager/e1391fb22e18a36f57e6999c7a9f966dc80ac073")
+        .lib.homeManagerConfiguration
+          {
+            pkgs = import nixpkgs {
+              system = "x86_64-linux";
+              overlays = [ self.overlays.default ];
+            };
+            modules = [
+              self.homeManagerModules.default
+              {
+                home = {
+                  username = "example";
+                  homeDirectory = "/home/example";
+                  stateVersion = "24.05";
+                  # hide nixpkgs warning
+                  enableNixpkgsReleaseCheck = false;
+                };
+
+                carburetor = {
+                  config = {
+                    variant = "regular";
+                    accent = "blue";
+                  };
+                  themes = {
+                    gtk = {
+                      enable = true;
+                      icon = true;
+                      # size = "compact";
+                      # tweaks = "float";
+                      # gnomeShellTheme = true;
+                    };
+                    hyprland.enable = true;
+                    hyprlock.enable = true;
+                    webcord.enable = true;
+                    wezterm.enable = true;
+                    zed.enable = true;
+                  };
+                };
+              }
+            ];
+          };
 
       # `nix fmt`
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
