@@ -33,7 +33,7 @@
           "float"
         ]
       );
-      default = [ ];
+      default = [ "normal" ];
     };
   };
 
@@ -41,12 +41,13 @@
     let
       cfg = config.${name}.themes.gtk;
       options = config.${name}.config;
+      gtkName = "${name}-${options.variant}-${options.accent}-${cfg.size}+${lib.concatStringsSep "," cfg.tweaks}";
     in
     lib.mkMerge [
       # Configure gtk theme
       (lib.mkIf cfg.enable {
         gtk.theme = {
-          name = "${name}-${options.variant}-${options.accent}-${cfg.size}+${lib.concatStringsSep "," cfg.tweaks}";
+          name = gtkName;
           package = pkgs.${name}.gtk.override {
             inherit (cfg) size tweaks;
             inherit (options) variant;
