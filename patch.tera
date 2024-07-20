@@ -1,3 +1,7 @@
+---
+whiskers:
+    version: "2.4.0"
+---
 #!/usr/bin/env bash
 flavor=$1
 transparent=$2
