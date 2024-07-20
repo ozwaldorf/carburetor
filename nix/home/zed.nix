@@ -10,7 +10,7 @@
   config = lib.mkIf config.${name}.themes.zed.enable {
     xdg.configFile = {
       "zed" = {
-        source = pkgs."${name}-zed";
+        source = pkgs.${name}.zed;
         recursive = true;
       };
     };
