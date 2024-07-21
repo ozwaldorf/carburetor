@@ -19,7 +19,7 @@ patch () {
     ARGS+=("-e s/$r/Ig")
   done
 
-  # shellcheck disable=SC2068
+  # shellcheck disable=SC20.7
   find "$path" -type f -exec sed -i ${ARGS[@]} {} +
 }
 
@@ -66,12 +66,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#585b70/{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#45475a/{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#313244/{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#1e1e2e/{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#181825/{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#11111b/{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#585b70/{{css_rgba(color=c.surface2 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#45475a/{{css_rgba(color=c.surface1 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#313244/{{css_rgba(color=c.surface0 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#1e1e2e/{{css_rgba(color=c.base | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#181825/{{css_rgba(color=c.mantle | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#11111b/{{css_rgba(color=c.crust | mod(opacity=0.7)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
@@ -103,7 +103,7 @@ case "$flavor" in
     )
     if [ "$transparent" != "true" ]; then
       COLORS+=(
-        "#5b6078/#{{c.surface2.hex}}"
+        "#5b60.7/#{{c.surface2.hex}}"
         "#494d64/#{{c.surface1.hex}}"
         "#363a4f/#{{c.surface0.hex}}"
         "#24273a/#{{c.base.hex}}"
@@ -112,12 +112,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#626880/{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#51576d/{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#414559/{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#303446/{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#292c3c/{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#232634/{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#626880/{{css_rgba(color=c.surface2 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#51576d/{{css_rgba(color=c.surface1 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#414559/{{css_rgba(color=c.surface0 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#303446/{{css_rgba(color=c.base | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#292c3c/{{css_rgba(color=c.mantle | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#232634/{{css_rgba(color=c.crust | mod(opacity=0.7)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
@@ -158,12 +158,12 @@ case "$flavor" in
       )
     else
       COLORS+=(
-        "#626880/{{css_rgba(color=c.surface2 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#51576d/{{css_rgba(color=c.surface1 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#414559/{{css_rgba(color=c.surface0 | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#303446/{{css_rgba(color=c.base | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#292c3c/{{css_rgba(color=c.mantle | mod(opacity=0.8)) | replace(from=" ", to="")}}"
-        "#232634/{{css_rgba(color=c.crust | mod(opacity=0.8)) | replace(from=" ", to="")}}"
+        "#626880/{{css_rgba(color=c.surface2 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#51576d/{{css_rgba(color=c.surface1 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#414559/{{css_rgba(color=c.surface0 | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#303446/{{css_rgba(color=c.base | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#292c3c/{{css_rgba(color=c.mantle | mod(opacity=0.7)) | replace(from=" ", to="")}}"
+        "#232634/{{css_rgba(color=c.crust | mod(opacity=0.7)) | replace(from=" ", to="")}}"
       )
     fi
     patch;;
