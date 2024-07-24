@@ -5,10 +5,17 @@
   lib,
   ...
 }:
+let
+  cfg = config.${name}.themes.webcord;
+  options = config.${name}.config;
+in
 {
-  options.${name}.themes.webcord.enable = lib.mkEnableOption "installing ${name} for webcord";
-  config = lib.mkIf config.${name}.themes.webcord.enable {
+  options.${name}.themes.webcord = {
+    enable = lib.mkEnableOption "installing ${name} for webcord";
+    transparency = lib.mkEnableOption "transparency in background colors";
+  };
+  config = lib.mkIf cfg.enable {
     xdg.configFile."WebCord/Themes/${name}".source =
-      pkgs.${name}.discord + "/${name}-${config.${name}.config.variant}.css";
+      pkgs.${name}.discord.override { inherit (cfg) transparency; } + "/${name}-${options.variant}.css";
   };
 }

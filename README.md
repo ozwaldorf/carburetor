@@ -81,19 +81,23 @@ carburetor = {
   };
   themes = {
     gtk = {
-        enable = true;
-        icon = true;
-        # size = "compact";
-        # tweaks = "float";
-        # gnomeShellTheme = true;
+      enable = true;
+      transparency = true;
+      icon = true;
+      # size = "compact";
+      # tweaks = "float";
+      # gnomeShellTheme = true;
     };
     hyprland.enable = true;
     hyprlock.enable = true;
-    webcord.enable = true;
+    webcord = {
+      enable = true;
+      transparency = true;
+    };
     wezterm.enable = true;
     zed.enable = true;
   };
-}
+};
 ```
 
 Detailed documentation on options is available at [docs/home.md](./docs/home.md).

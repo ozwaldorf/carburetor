@@ -5,6 +5,8 @@
   fetchFromGitHub,
   mkYarnPackage,
   yarn,
+
+  transparency ? false,
   ...
 }:
 let
@@ -19,7 +21,7 @@ let
     name = "${name}-discord-modules";
     nativeBuildInputs = [ pkgs."${name}".tools.patch ];
     postBuild = ''
-      ${name}-patch all false node_modules/@catppuccin/palette
+      ${name}-patch all ${pkgs.lib.trivial.boolToString transparency} node_modules/@catppuccin/palette
     '';
   };
 in

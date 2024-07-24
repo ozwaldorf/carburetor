@@ -10,7 +10,7 @@
   catppuccin-gtk,
   variant ? variantNames.mocha,
   accents ? [ defaultAccent ],
-  transparent ? true,
+  transparency ? false,
   ...
 }@extraArgs:
 let
@@ -29,7 +29,7 @@ stdenvNoCC.mkDerivation {
     ).out;
   nativeBuildInputs = [ tools.patch ];
   patchPhase = ''
-    ${name}-patch ${flavor} ${pkgs.lib.trivial.boolToString transparent} share/themes
+    ${name}-patch ${flavor} ${pkgs.lib.trivial.boolToString transparency} share/themes
     ls share/themes | while read output; do
       RENAME=''${output/catppuccin/${name}}
       RENAME=''${RENAME/mocha/${variantNames.mocha}}

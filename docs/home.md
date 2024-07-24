@@ -119,6 +119,24 @@ one of “standard”, “compact”
 
 
 
+## carburetor\.themes\.gtk\.transparency
+
+
+
+Whether to enable transparency in background colors
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
 ## carburetor\.themes\.gtk\.tweaks
 
 
@@ -128,7 +146,7 @@ Tweaks for gtk
 
 
 *Type:*
-list of (one of “black”, “rimless”, “normal”, “float”)
+list of (one of “black”, “rimless”, “float”)
 
 
 
@@ -188,6 +206,29 @@ boolean
 
 
 Whether to enable installing carburetor for webcord\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.webcord\.transparency
+
+
+
+Whether to enable transparency in background colors\.
 
 
 

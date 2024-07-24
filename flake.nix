@@ -83,6 +83,7 @@
                   themes = {
                     gtk = {
                       enable = true;
+                      transparency = true;
                       icon = true;
                       # size = "compact";
                       # tweaks = "float";
@@ -90,7 +91,10 @@
                     };
                     hyprland.enable = true;
                     hyprlock.enable = true;
-                    webcord.enable = true;
+                    webcord = {
+                      enable = true;
+                      transparency = true;
+                    };
                     wezterm.enable = true;
                     zed.enable = true;
                   };
