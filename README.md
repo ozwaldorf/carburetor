@@ -51,6 +51,7 @@ pkgs = import nixpkgs {
 
 This provides the following raw theme packages:
 
+- `pkgs.carburetor.base16` - whiskers base16 config
 - `pkgs.carburetor.gtk` - patched gtk theme
 - `pkgs.carburetor.hyprland` - whiskers hyprland themes
 - `pkgs.carburetor.hyprlock` - patched hyprlock config

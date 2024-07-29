@@ -1,0 +1,18 @@
+scheme: "carburetor cool"
+author: "https://github.com/ozwaldorf/carburetor"
+base00: "171414" # base
+base01: "0b0a0a" # mantle
+base02: "272525" # surface0
+base03: "3c3838" # surface1
+base04: "565151" # surface2
+base05: "f7f3f2" # text
+base06: "fed7d9" # rosewater
+base07: "be95ff" # lavender
+base08: "fa4d56" # red
+base09: "fe832b" # peach
+base0A: "fddc69" # yellow
+base0B: "42be65" # green
+base0C: "3ddbd9" # teal
+base0D: "4589ff" # blue
+base0E: "d4bbff" # mauve
+base0F: "ffb3b8" # flamingo
