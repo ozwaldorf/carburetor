@@ -79,7 +79,7 @@ final: prev: {
                   -e 's/catppuccin/${theme}/Ig' \
                   -e 's/mocha/${variantNames.mocha}/Ig' \
                   -e 's/macchiato/${variantNames.macchiato}/Ig' \
-                  -e 's/frapp(e|é)/${variantNames.frappe}/Ig' \
+                  -e 's/frapp[eé]/${variantNames.frappe}/Ig' \
                   -e 's/latte/${variantNames.latte}/Ig' \
                   {} \;
 
@@ -89,7 +89,7 @@ final: prev: {
               # and copy them to $out, and rename them to the `whiskersRename` option
               installPhase = ''
                 runHook preInstall
-
+                shopt -s nocasematch
                 mkdir -p $out
                 for output in "''${files[@]}"; do
                   echo "Renaming and copying $output"
