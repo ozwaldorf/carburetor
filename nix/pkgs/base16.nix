@@ -2,6 +2,7 @@
 { pkgs, fetchFromGitHub, ... }:
 pkgs."${name}".tools.mkWhiskersDerivation {
   pname = "base16";
+  version = "0-unstable-2024-04-10";
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "base16";
