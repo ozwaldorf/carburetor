@@ -51,7 +51,7 @@
         gtk.theme = {
           name = gtkName;
           package = pkgs.${name}.gtk.override {
-            inherit (cfg) size tweaks;
+            inherit (cfg) size tweaks transparency;
             inherit (options) variant;
             accents = [ options.accent ];
           };

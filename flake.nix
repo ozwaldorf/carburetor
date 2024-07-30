@@ -1,9 +1,6 @@
 {
   description = "Carburetor's theme and customized tooling flake";
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   nixConfig = {
     extra-substituters = [ "https://cache.garnix.io" ];
     extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
