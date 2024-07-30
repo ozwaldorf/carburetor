@@ -46,8 +46,10 @@
 
       packages = forAllSystems (
         pkgs:
+        # Export all raw theme packages
         lib.removeAttrs pkgs.carburetor [ "tools" ]
         // {
+          # Patch tool
           inherit (pkgs.carburetor.tools) patch;
           # Home module documentation
           docs = themeLib.mkDocs carburetorHomeModule pkgs;
@@ -100,6 +102,7 @@
             ];
           };
 
+      # `nix develop`
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           packages = with pkgs; [

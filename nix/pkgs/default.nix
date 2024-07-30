@@ -76,11 +76,11 @@ final: prev: {
 
                 # Replace name and variant texts
                 find . -type f -exec sed -i \
-                  -e 's/catppuccin/${theme}/Ig' \
-                  -e 's/mocha/${variantNames.mocha}/Ig' \
-                  -e 's/macchiato/${variantNames.macchiato}/Ig' \
-                  -e 's/frapp[eé]/${variantNames.frappe}/Ig' \
-                  -e 's/latte/${variantNames.latte}/Ig' \
+                  -e 's/catppuccin/${theme}/gI' \
+                  -e 's/mocha/${variantNames.mocha}/gI' \
+                  -e 's/macchiato/${variantNames.macchiato}/gI' \
+                  -e 's/frapp[eé]/${variantNames.frappe}/gI' \
+                  -e 's/latte/${variantNames.latte}/gI' \
                   {} \;
 
                 runHook postBuild
