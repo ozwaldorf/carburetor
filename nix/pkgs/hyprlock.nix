@@ -30,6 +30,7 @@ in
 stdenvNoCC.mkDerivation {
   inherit src;
   name = "${name}-hyprlock";
+  version = "0-unstable-2024-06-17";
   patchPhase = ''
     sed -i \
       -e 's:mocha:${variant}:Ig' \
