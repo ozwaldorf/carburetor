@@ -28,6 +28,7 @@ in
 stdenvNoCC.mkDerivation {
   inherit src;
   name = "${name}-discord";
+  version = "0-unstable-2024-07-04";
   nativeBuildInputs = [ yarn ];
   buildPhase = ''
     mkdir node_modules
