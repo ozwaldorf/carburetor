@@ -19,6 +19,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   name = "${name}-gtk";
+  version = catppuccin-gtk.version;
   src =
     (
       catppuccin-gtk.override {

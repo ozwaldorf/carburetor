@@ -19,6 +19,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   name = "${name}-papirus-folders";
+  version = catppuccin-papirus-folders.version;
   src = (catppuccin-papirus-folders.override { inherit flavor accent; }).out;
   nativeBuildInputs = [ tools.patch ];
   patchPhase = ''
