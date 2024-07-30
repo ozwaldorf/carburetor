@@ -2,11 +2,12 @@
 { pkgs, fetchFromGitHub, ... }:
 pkgs."${name}".tools.mkWhiskersDerivation {
   pname = "zed";
+  version = "0.2.10-unstable-2024-07-28";
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "zed";
-    rev = "6ac674645711195d90f02876e74c79256848ff22";
-    hash = "sha256-jOHCO4wBqm2oNwVSJ3S9npKE5Gsen6ai9TZd9IMuevc=";
+    rev = "b7de18fb6748312e6c5eaf6995e2759ae3c29455";
+    hash = "sha256-r+0b1TOccCDT9Xzopy8tGB2hTQRL0yX+ZcYlBHC/Big=";
   };
   patches = [
     (pkgs.writeText "current_line.patch" ''
