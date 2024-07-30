@@ -238,8 +238,8 @@ Heavily inspired from [oxocarbon](https://github.com/nyoom-engineering/oxocarbon
 ## Development
 
 ```bash
-# check packages
-nix flake check
+# update theme sources
+nix-update -F --build --commit --version=branch <package>
 
 # generate docs
 nix build .\#docs && cp -L result/* docs

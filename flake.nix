@@ -44,15 +44,15 @@
       # Carburetor home manager module
       homeManagerModules.default = carburetorHomeModule;
 
-      packages = forAllSystems (pkgs: {
-        # Options doc generator
-        docs = themeLib.mkDocs carburetorHomeModule pkgs;
-        # `carburetor-patch`
-        patch = pkgs.carburetor.tools.patch;
-      });
-
-      # `nix flake check`
-      checks = forAllSystems (pkgs: lib.removeAttrs pkgs.carburetor [ "tools" ]);
+      packages = forAllSystems (
+        pkgs:
+        lib.removeAttrs pkgs.carburetor [ "tools" ]
+        // {
+          inherit (pkgs.carburetor.tools) patch;
+          # Home module documentation
+          docs = themeLib.mkDocs carburetorHomeModule pkgs;
+        }
+      );
 
       # Standalone home manager usage example
       homeConfigurations.example =
@@ -99,6 +99,15 @@
               }
             ];
           };
+
+      devShells = forAllSystems (pkgs: {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            carburetor.tools.patch
+            nix-update
+          ];
+        };
+      });
 
       # `nix fmt`
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
