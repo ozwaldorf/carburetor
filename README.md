@@ -18,6 +18,7 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
         3. [Userstyles](#userstyles)
+        4. [Base16](#base16)
 3. [Honorable Mentions](#honorable-mentions)
 
 ## Previews
@@ -225,6 +226,10 @@ You will then have the set of colorschemes available:
 - `Carburetor`
 - `Carburetor Cool`
 - `Carburetor Warm`
+
+#### Base16
+
+A set of base16 configuration files for carburetor can be found at [src/base16](./src/base16)
 
 ## Honorable Mentions
 
