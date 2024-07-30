@@ -2,6 +2,7 @@
 { pkgs, fetchFromGitHub, ... }:
 pkgs."${name}".tools.mkWhiskersDerivation {
   pname = "hyprland";
+  version = "1.3-unstable-2024-06-19";
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "hyprland";
