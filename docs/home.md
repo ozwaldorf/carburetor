@@ -123,7 +123,7 @@ one of “standard”, “compact”
 
 
 
-Whether to enable transparency in background colors
+Whether to enable transparency in background colors\.
 
 
 
@@ -134,6 +134,11 @@ boolean
 
 *Default:*
 ` false `
+
+
+
+*Example:*
+` true `
 
 
 
@@ -183,6 +188,52 @@ boolean
 
 
 Whether to enable installing carburetor for hyprlock\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.vesktop\.enable
+
+
+
+Whether to enable installing carburetor themes for vesktop\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.vesktop\.transparency
+
+
+
+Whether to enable transparency in background colors\.
 
 
 

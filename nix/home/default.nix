@@ -12,6 +12,7 @@ args@{
     (import ./hyprlock.nix args)
     (import ./webcord.nix args)
     (import ./wezterm.nix args)
+    (import ./vesktop.nix args)
     (import ./zed.nix args)
   ];
 
