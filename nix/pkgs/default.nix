@@ -77,6 +77,7 @@ final: prev: {
                 # Replace name and variant texts
                 find . -type f -exec sed -i \
                   -e 's/catppuccin/${theme}/gI' \
+                  -e 's/soothing pastel theme/Carburetor theme/gI' \
                   -e 's/mocha/${variantNames.mocha}/gI' \
                   -e 's/macchiato/${variantNames.macchiato}/gI' \
                   -e 's/é/e/g' \

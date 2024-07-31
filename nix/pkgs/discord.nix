@@ -34,6 +34,19 @@ stdenvNoCC.mkDerivation {
     mkdir node_modules
     find ${deps}/libexec/catppuccin-discord/{,deps/catppuccin-discord/}node_modules -mindepth 1 -maxdepth 1 -exec ln -vs "{}" node_modules/ ';'
     yarn build
+
+    # Replace name and variant texts
+    find . -type f -exec sed -i \
+      -e 's:catppuccin/discord:ozwaldorf/carburetor:g' \
+      -e 's:soothing pastel theme:Carburetor theme:gI' \
+      -e 's/catppuccin/${name}/gI' \
+      -e 's/mocha/${variantNames.mocha}/gI' \
+      -e 's/macchiato/${variantNames.macchiato}/gI' \
+      -e 's/é/e/g' \
+      -e 's/frappe/${variantNames.frappe}/gI' \
+      -e 's/latte/${variantNames.latte}/gI' \
+      {} \;
+
   '';
   installPhase = ''
     mkdir $out
