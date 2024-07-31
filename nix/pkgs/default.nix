@@ -79,7 +79,8 @@ final: prev: {
                   -e 's/catppuccin/${theme}/gI' \
                   -e 's/mocha/${variantNames.mocha}/gI' \
                   -e 's/macchiato/${variantNames.macchiato}/gI' \
-                  -e 's/frapp[eé]/${variantNames.frappe}/gI' \
+                  -e 's/é/e/g' \
+                  -e 's/frappe/${variantNames.frappe}/gI' \
                   -e 's/latte/${variantNames.latte}/gI' \
                   {} \;
 
