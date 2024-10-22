@@ -23,14 +23,14 @@ let
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "hyprlock";
-    rev = "480c46f1f3fa9dd175f8f9611c0d4378324378a7";
-    hash = "sha256-Fisxyg5Q5C3dlZdIpgVDEpOUJYrqRMT6HJ+46XUVwI0=";
+    rev = "958e70b1cd8799defd16dee070d07f977d4fd76b";
+    hash = "sha256-l4CbAUeb/Tg603QnZ/VWxuGqRBztpHN0HLX/h8ndc5w=";
   };
 in
 stdenvNoCC.mkDerivation {
   inherit src;
   name = "${name}-hyprlock";
-  version = "0-unstable-2024-06-17";
+  version = "0-unstable-2024-08-06";
   patchPhase = ''
     sed -i \
       -e 's:mocha:${variant}:Ig' \
