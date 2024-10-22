@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
-    rev = "c34b767d222ddba4345a858cfdb513fd44e3b0ec";
-    hash = "sha256-WQTdLqu9sbu8yJiwZABc4aM9rbLcvNcd0hhGhL3Hjkg=";
+    rev = "54199949330d69c179c04798b81a755a64828c63";
+    hash = "sha256-QdwJk+pSZ2Z6MwZORSmGmMFlbGO3kF9mPxWxxWBCoHo=";
   };
   deps = mkYarnPackage {
     inherit src;
@@ -28,7 +28,7 @@ in
 stdenvNoCC.mkDerivation {
   inherit src;
   name = "${name}-discord";
-  version = "0-unstable-2024-07-04";
+  version = "0-unstable-2024-10-02";
   nativeBuildInputs = [ yarn ];
   buildPhase = ''
     mkdir node_modules
