@@ -8,19 +8,6 @@
   outputs =
     { self, nixpkgs }:
     let
-      inherit (nixpkgs) lib;
-      forAllSystems =
-        fun:
-        lib.genAttrs lib.systems.flakeExposed (
-          system:
-          fun (
-            import nixpkgs {
-              inherit system;
-              overlays = [ self.overlays.default ];
-            }
-          )
-        );
-
       themeLib = import ./nix/lib.nix;
       carburetorTheme = {
         name = "carburetor";
@@ -35,12 +22,27 @@
       };
       carburetorOverlay = themeLib.mkCustomThemeOverlay carburetorTheme;
       carburetorHomeModule = themeLib.mkCustomHomeManagerModule carburetorTheme;
+
+      inherit (nixpkgs) lib;
+      forSystem =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ carburetorOverlay ];
+        };
+      forAllSystems = fun: lib.genAttrs lib.systems.flakeExposed (system: fun (forSystem system));
     in
     {
       # Nix library for custom catppuccin themes
       lib = themeLib;
       # Carburetor theme overlay
-      overlays.default = carburetorOverlay;
+      overlays = rec {
+        default = carburetorOverlay;
+        # If experiencing nixpkgs errors, reuse the locked nixpkgs and just insert the package set
+        insert =
+          final: prev:
+          (lib.attrsets.getAttrs (builtins.attrNames (default null null)) (forSystem final.system));
+      };
       # Carburetor home manager module
       homeManagerModules.default = carburetorHomeModule;
 
