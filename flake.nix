@@ -76,6 +76,7 @@
                   stateVersion = "24.05";
                 };
 
+                gtk.enable = true;
                 carburetor = {
                   config = {
                     variant = "regular";

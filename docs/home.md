@@ -36,7 +36,7 @@ one of “cool”, “light”, “warm”, “regular”
 
 
 
-Whether to enable installing and configuring gtk themes\.
+Whether to enable installing and configuring gtk themes\. Also requires `gtk.enable = true;`\.
 
 
 
@@ -341,5 +341,3 @@ boolean
 
 *Example:*
 ` true `
-
-

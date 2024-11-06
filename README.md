@@ -75,6 +75,9 @@ Example home configuration:
 # import the carburetor module
 imports = [ inputs.carburetor.homeManagerModules.default ];
 
+# enable home manager gtk module
+gtk.enable = true;
+
 # configure carburetor theme installation
 carburetor = {
   config = {
