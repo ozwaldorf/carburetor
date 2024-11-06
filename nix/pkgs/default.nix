@@ -127,6 +127,7 @@ final: prev: {
 
       "base16" = mkThemePackage ./base16.nix;
       "discord" = mkThemePackage ./discord.nix;
+      "foot" = mkThemePackage ./foot.nix;
       "gtk" = mkThemePackage ./gtk.nix;
       "hyprland" = mkThemePackage ./hyprland.nix;
       "hyprlock" = mkThemePackage ./hyprlock.nix;
