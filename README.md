@@ -227,6 +227,10 @@ You will then have the set of colorschemes available:
 - `Carburetor Cool`
 - `Carburetor Warm`
 
+#### Foot
+
+A set of foot terminal configs can be found at [src/foot](./src/foot).
+
 #### Base16
 
 A set of base16 configuration files for carburetor can be found at [src/base16](./src/base16)
