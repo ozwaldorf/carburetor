@@ -7,6 +7,7 @@ args@{
 { lib, ... }:
 {
   imports = [
+    (import ./foot.nix args)
     (import ./gtk.nix args)
     (import ./hyprland.nix args)
     (import ./hyprlock.nix args)

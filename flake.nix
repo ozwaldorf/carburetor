@@ -82,6 +82,7 @@
                     accent = "blue";
                   };
                   themes = {
+                    foot.enable = true;
                     gtk = {
                       enable = true;
                       transparency = true;
