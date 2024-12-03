@@ -14,11 +14,11 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
         1. [Discord](#discord)
     3. [Catppuccin Whiskers](#catppuccin-whiskers)
         1. [Zed](#zed)
-    4. [Config Examples](#config-examples)
+    4. [Userstyles](#userstyles)
+    5. [Config Examples](#config-examples)
         1. [Nvim](#nvim)
         2. [Wezterm](#wezterm)
-        3. [Userstyles](#userstyles)
-        4. [Base16](#base16)
+        3. [Base16](#base16)
 3. [Honorable Mentions](#honorable-mentions)
 
 ## Previews
@@ -214,15 +214,18 @@ The same process should apply for whichever program you would like to create a C
 
 ---
 
+### Userstyles
+
+A fork of the Catppuccin userstyles is maintained at [carburetor-userstyles](https://github.com/ozwaldorf/carburetor-userstyles/) and synced periodically.
+Over 100 websites are supported with auto-updates setup correctly.
+
+---
+
 ### Config Examples
 
 #### Nvim
 
 [catppuccin.nvim](https://github.com/catppuccin/nvim) can be easily configured to use carburetor colors, shown [here](src/nvim.lua).
-
-#### Userstyles
-
-Catppuccin [userstyle](https://github.com/catppuccin/userstyles/) ports use the same exact color definitions, and can be easily patched by replacing them with the [userstyle colors](src/userstyle.css).
 
 #### Wezterm
 
