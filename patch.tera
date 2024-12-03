@@ -124,7 +124,7 @@ case "$flavor" in
 
   # Carburetor Warm
   frappe)
-    {% set c = flavors.mocha.colors -%}
+    {% set c = flavors.frappe.colors -%}
     export COLORS=(
       "#f2d5cf/#{{c.rosewater.hex}}"
       "#eebebe/#{{c.flamingo.hex}}"
