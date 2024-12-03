@@ -23,7 +23,14 @@ A functional and high contrast colorscheme inspired by IBM Carbon.
 
 ## Previews
 
-![image](https://github.com/ozwaldorf/carburetor/assets/8976745/54bbafc8-cc3a-4fa0-a291-c54cdd49bfd8)
+### Carburetor Regular
+![image](https://github.com/user-attachments/assets/843df0c7-58a1-4885-8c82-e29821b2b28c)
+
+### Carburetor Cool
+![image](https://github.com/user-attachments/assets/1ba6adc0-cb47-44bd-bdd5-2b20f3fb12dc)
+
+### Carburetor Warm
+![image](https://github.com/user-attachments/assets/bfb99aa6-ebb2-42c3-9b4f-3e887c020b7d)
 
 ## Usage
 
