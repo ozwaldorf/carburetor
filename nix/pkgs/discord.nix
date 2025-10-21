@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
-    rev = "54199949330d69c179c04798b81a755a64828c63";
-    hash = "sha256-QdwJk+pSZ2Z6MwZORSmGmMFlbGO3kF9mPxWxxWBCoHo=";
+    rev = "70acffa079429bc4a0290d6699b66471c3ec4fd3";
+    hash = "sha256-oyVZxdr4UacRMOCDdjSl2B/X5ySYTOD5iCOq0MLSxD4=";
   };
   deps = mkYarnPackage {
     inherit src;
