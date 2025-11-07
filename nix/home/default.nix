@@ -15,6 +15,7 @@ args@{
     (import ./wezterm.nix args)
     (import ./vesktop.nix args)
     (import ./zed.nix args)
+    (import ./vicinae.nix args)
   ];
 
   options.${name}.config = {
