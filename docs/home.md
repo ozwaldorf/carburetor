@@ -32,6 +32,29 @@ one of “cool”, “light”, “warm”, “regular”
 
 
 
+## carburetor\.themes\.foot\.enable
+
+
+
+Whether to enable installing carburetor for hyprland\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
 ## carburetor\.themes\.gtk\.enable
 
 
@@ -234,6 +257,29 @@ boolean
 
 
 Whether to enable transparency in background colors\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+` false `
+
+
+
+*Example:*
+` true `
+
+
+
+## carburetor\.themes\.vicinae\.enable
+
+
+
+Whether to enable installing carburetor for vicinae\.
 
 
 
