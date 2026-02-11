@@ -132,6 +132,7 @@ final: prev: {
       "hyprland" = mkThemePackage ./hyprland.nix;
       "hyprlock" = mkThemePackage ./hyprlock.nix;
       "papirus-folders" = mkThemePackage ./papirus-folders.nix;
+      "termux" = mkThemePackage ./termux.nix;
       "zed" = mkThemePackage ./zed.nix;
     };
 }
