@@ -60,7 +60,7 @@
 
       # Standalone home manager usage example
       homeConfigurations.example =
-        (builtins.getFlake "github:nix-community/home-manager/e1391fb22e18a36f57e6999c7a9f966dc80ac073")
+        (builtins.getFlake "github:nix-community/home-manager/c81775b640d4507339d127f5adb4105f6015edf2")
         .lib.homeManagerConfiguration
           {
             pkgs = import nixpkgs {
@@ -99,6 +99,7 @@
                     };
                     wezterm.enable = true;
                     zed.enable = true;
+                    vicinae.enable = true;
                   };
                 };
               }
