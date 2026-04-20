@@ -13,10 +13,10 @@ pkgs."${name}".tools.mkWhiskersDerivation {
     (pkgs.writeText "current_line.patch" ''
       --- a/zed.tera
       +++ b/zed.tera
-      @@ -79,3 +79,3 @@ whiskers:
-                       "editor.subheader.background": "#{{c.mantle.hex}}",
-      -                "editor.active_line.background": "#{{ c.text | mod(opacity=0.05) | get(key="hex") }}",
-      +                "editor.active_line.background": "#{{ c.text | mod(opacity=0.02) | get(key="hex") }}",
+      @@ -108,3 +108,3 @@ whiskers:
+                       "editor.subheader.background": "{{ c.mantle.hex }}",
+      -                "editor.active_line.background": "{{ c.text | mod(opacity=0.07) | get(key="hex") }}",
+      +                "editor.active_line.background": "{{ c.text | mod(opacity=0.02) | get(key="hex") }}",
                        "editor.highlighted_line.background": null,
     '')
   ];
