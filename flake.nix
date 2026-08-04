@@ -1,10 +1,7 @@
 {
   description = "Carburetor's theme and customized tooling flake";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  nixConfig = {
-    extra-substituters = [ "https://cache.garnix.io" ];
-    extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
-  };
+
   outputs =
     { self, nixpkgs }:
     let
@@ -60,7 +57,7 @@
 
       # Standalone home manager usage example
       homeConfigurations.example =
-        (builtins.getFlake "github:nix-community/home-manager/c81775b640d4507339d127f5adb4105f6015edf2")
+        (builtins.getFlake "github:nix-community/home-manager/bf9ce9fec78f95f374e8dd3b503863a3ec128ebe")
         .lib.homeManagerConfiguration
           {
             pkgs = import nixpkgs {
