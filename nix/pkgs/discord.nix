@@ -3,37 +3,45 @@
   pkgs,
   stdenvNoCC,
   fetchFromGitHub,
-  mkYarnPackage,
-  yarn,
+  fetchurl,
+  dart-sass,
 
   transparency ? false,
   ...
 }:
 let
+  palette = fetchurl {
+    url = "https://registry.yarnpkg.com/@catppuccin/palette/-/palette-1.7.1.tgz";
+    hash = "sha256-P+v8jjt+Lww94n4n9zHVbn8XPpF+hXBFit0qBU7GScQ=";
+  };
+  highlightjs = fetchurl {
+    url = "https://registry.yarnpkg.com/@catppuccin/highlightjs/-/highlightjs-1.0.1.tgz";
+    hash = "sha256-sTq0vlb+3s4bbpEV0GCFHnnogI2EaQRk9Gqum1G+AMM=";
+  };
+in
+stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
     rev = "70acffa079429bc4a0290d6699b66471c3ec4fd3";
     hash = "sha256-oyVZxdr4UacRMOCDdjSl2B/X5ySYTOD5iCOq0MLSxD4=";
   };
-  deps = mkYarnPackage {
-    inherit src;
-    name = "${name}-discord-modules";
-    nativeBuildInputs = [ pkgs."${name}".tools.patch ];
-    postBuild = ''
-      ${name}-patch all ${pkgs.lib.trivial.boolToString transparency} node_modules/@catppuccin/palette
-    '';
-  };
-in
-stdenvNoCC.mkDerivation {
-  inherit src;
   name = "${name}-discord";
   version = "0-unstable-2024-10-02";
-  nativeBuildInputs = [ yarn ];
+  nativeBuildInputs = [
+    dart-sass
+    pkgs.${name}.tools.patch
+  ];
   buildPhase = ''
-    mkdir node_modules
-    find ${deps}/libexec/catppuccin-discord/{,deps/catppuccin-discord/}node_modules -mindepth 1 -maxdepth 1 -exec ln -vs "{}" node_modules/ ';'
-    yarn build
+    mkdir -p node_modules/@catppuccin/{palette,highlightjs}
+    tar xf ${palette} -C node_modules/@catppuccin/palette --strip-components=1
+    tar xf ${highlightjs} -C node_modules/@catppuccin/highlightjs --strip-components=1
+    chmod -R u+w node_modules
+
+    ${name}-patch all ${pkgs.lib.trivial.boolToString transparency} node_modules/@catppuccin/palette
+
+    mkdir -p dist/dist
+    sass -I node_modules --no-charset --no-source-map src:dist/dist
 
     # Replace name and variant texts
     find . -type f -exec sed -i \
@@ -46,7 +54,6 @@ stdenvNoCC.mkDerivation {
       -e 's/frappe/${variantNames.frappe}/gI' \
       -e 's/latte/${variantNames.latte}/gI' \
       {} \;
-
   '';
   installPhase = ''
     mkdir $out
