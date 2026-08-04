@@ -22,6 +22,7 @@ stdenvNoCC.mkDerivation {
   version = catppuccin-papirus-folders.version;
   src = (catppuccin-papirus-folders.override { inherit flavor accent; }).out;
   nativeBuildInputs = [ tools.patch ];
+  dontFixup = true;
   patchPhase = ''
     ${name}-patch ${flavor} false share/icons
   '';
