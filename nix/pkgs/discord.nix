@@ -23,11 +23,11 @@ stdenvNoCC.mkDerivation {
   src = fetchFromGitHub {
     owner = "catppuccin";
     repo = "discord";
-    rev = "70acffa079429bc4a0290d6699b66471c3ec4fd3";
-    hash = "sha256-oyVZxdr4UacRMOCDdjSl2B/X5ySYTOD5iCOq0MLSxD4=";
+    rev = "b9b5547f0b32296d2389716ef606de87b3c1e7c7";
+    hash = "sha256-rxvHIifq5CYIBPwFA2SpOrWT+sG/z0ItXT3sx2wbEqg=";
   };
   name = "${name}-discord";
-  version = "0-unstable-2024-10-02";
+  version = "0-unstable-2026-02-07";
   nativeBuildInputs = [
     dart-sass
     pkgs.${name}.tools.patch
