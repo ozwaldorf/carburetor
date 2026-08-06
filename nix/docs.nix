@@ -4,7 +4,9 @@ let
     url = "https://github.com/${user}/${repo}/blob/${branch}/${subpath}";
     name = "<${repo}/${subpath}>";
   };
-  prefixPath = toString ./..;
+  # Only used for prefix matching, so drop the store context to keep the
+  # generated options doc from carrying an unresolved store reference
+  prefixPath = builtins.unsafeDiscardStringContext (toString ./..);
   transformOptions =
     opt:
     opt

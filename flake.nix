@@ -38,7 +38,9 @@
         # If experiencing nixpkgs errors, reuse the locked nixpkgs and just insert the package set
         insert =
           final: prev:
-          (lib.attrsets.getAttrs (builtins.attrNames (default null null)) (forSystem final.system));
+          (lib.attrsets.getAttrs (builtins.attrNames (default null null)) (
+            forSystem final.stdenv.hostPlatform.system
+          ));
       };
       # Carburetor home manager module
       homeManagerModules.default = carburetorHomeModule;
