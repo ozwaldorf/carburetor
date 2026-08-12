@@ -12,7 +12,7 @@
 }:
 {
   options.${name}.themes.gtk = {
-    enable = lib.mkEnableOption "installing and configuring gtk themes";
+    enable = lib.mkEnableOption "installing and configuring gtk themes\. Also requires `gtk.enable = true;`";
     transparency = lib.mkEnableOption "transparency in background colors";
     icon = lib.mkEnableOption "installing patched papirus icons";
     gnomeShellTheme = lib.mkEnableOption "installing gtk theme for GNOME Shell";
